@@ -1,494 +1,192 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Mini‑Banner Starter (Single File)</title>
-<style>
-  :root {
-    --ink:#0b1020; --muted:#5b6475; --panel:#fff; --bg:#f7f8fb;
-    --primary:#2457f5; --ok:#0a7d33; --warn:#b45309; --err:#9b1c1c; --info:#0369a1;
-    --radius:14px; --shadow:0 8px 28px rgba(0,0,0,.12);
-  }
-  html,body{height:100%} body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-  .wrap{max-width:1200px;margin:2rem auto;padding:0 1rem} header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-  .brand{font-weight:700;letter-spacing:.2px} .brand small{color:var(--muted);font-weight:500;margin-left:.35rem}
-  .card{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem}
-  .grid{display:grid;gap:1rem;grid-template-columns: 1fr 1fr} @media(max-width:900px){.grid{grid-template-columns:1fr}}
-  label{display:block;font-weight:600;margin:.25rem 0 .35rem} .help{color:var(--muted);font-size:.925rem}
-  input[type="text"],select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:.6rem .7rem;font-size:1rem;background:#fff}
-  textarea{min-height:110px;resize:vertical} .btn{border:1px solid #cbd5e1;background:#fff;padding:.55rem .85rem;border-radius:10px;cursor:pointer;font-weight:600}
-  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff} .btn.success{background:var(--ok);border-color:var(--ok);color:#fff}
-  .toolbar{display:flex;gap:.5rem;flex-wrap:wrap}
-  .row{display:grid;gap:.75rem;grid-template-columns: repeat(12,1fr);align-items:end}
-  .col-4{grid-column: span 4}.col-6{grid-column: span 6}.col-8{grid-column: span 8}.col-12{grid-column: span 12}
-  table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid #eef2f7}
-  th{font-size:.9rem;color:var(--muted);font-weight:700}
-  .msgbar{margin:.75rem 0 0;background:#eef6ff;border-left:6px solid var(--info);padding:.6rem .8rem;border-radius:10px}
-  .msgbar.info{background:#eef6ff;border-color:var(--info)} .msgbar.success{background:#ecfdf5;border-color:var(--ok)}
-  .msgbar.warn{background:#fff7ed;border-color:var(--warn)} .msgbar.error{background:#fef2f2;border-color:var(--err)}
-  .msgbar button{float:right} .sr-only{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-  dialog{border:none;border-radius:12px;box-shadow:var(--shadow);max-width:900px;width:90%} dialog::backdrop{background:rgba(0,0,0,.35)}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Banner Training (Demo)</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="wrap">
-  <header aria-label="Header">
-    <div class="brand">Mini‑Banner <small>(single file)</small></div>
-    <div class="toolbar">
-      <button id="resetBtn" class="btn" type="button">Reload</button>
-    </div>
-  </header>
-  <div id="msg" class="msgbar info" role="status" aria-live="polite" hidden></div>
-  <section class="card" role="region" aria-labelledby="kbHeading">
-    <h2 id="kbHeading" style="margin:.25rem 0 1rem;">Key Block</h2>
-    <p class="help" id="kbHelp">Type an ID (9 digits) or a name as “Last, First” and press Go. Or open Person Search for filters and wildcards (%).</p>
-    <div class="row">
-      <div class="col-4">
-        <label for="pid">ID</label>
-        <div style="display:flex;gap:.5rem;align-items:center">
-          <input id="pid" name="pid" type="text" placeholder="201900003" aria-describedby="kbHelp" />
-          <button id="optBtn" class="btn" type="button" aria-haspopup="dialog" aria-controls="searchDlg" title="Person Search (SOAIDEN)">…</button>
+  <!-- Left sidebar (static) -->
+  <aside class="sidebar" aria-label="Main navigation">
+    <button class="sidebar__btn" data-route="home" aria-label="Dashboard">
+      <span class="icon">🏠</span><span class="label">Dashboard</span>
+    </button>
+    <button class="sidebar__btn" data-panel="applications" aria-label="Applications">
+      <span class="icon">🧭</span><span class="label">Applications</span>
+    </button>
+    <button class="sidebar__btn" data-panel="search" aria-label="Search">
+      <span class="icon">🔎</span><span class="label">Search</span>
+    </button>
+    <button class="sidebar__btn" data-panel="recent" aria-label="Recently opened">
+      <span class="icon">🕘</span><span class="label">Recently</span>
+    </button>
+    <button class="sidebar__btn" data-panel="help" aria-label="Help">
+      <span class="icon">❓</span><span class="label">Help</span>
+    </button>
+    <div class="sidebar__spacer"></div>
+    <button class="sidebar__btn" data-panel="user" aria-label="User">
+      <span class="icon">👤</span><span class="label">User</span>
+    </button>
+  </aside>
+
+  <main id="app" class="app" role="main" aria-live="polite">
+    <!-- Top blue bar appears on 'pages' -->
+    <header id="topbar" class="topbar hidden" role="banner">
+      <div class="topbar__left">
+        <span id="topbarFormName" class="topbar__title">Address Information SWADDER 9.0 (DEMO)</span>
+      </div>
+      <div class="topbar__right">
+        <button class="btn btn--ghost" data-action="add">ADD</button>
+        <button class="btn btn--ghost" data-action="retrieve">RETRIEVE</button>
+        <button class="btn btn--ghost" data-action="related">RELATED</button>
+        <div class="menu">
+          <button class="btn btn--ghost" aria-haspopup="true" aria-expanded="false">TOOLS ▾</button>
+          <ul class="menu__list" role="menu" aria-label="Tools menu">
+            <li role="menuitem"><button class="menu__item" data-action="start-over">Start Over</button></li>
+          </ul>
         </div>
       </div>
-      <div class="col-6">
-        <label for="pname">Name (Last, First)</label>
-        <input id="pname" name="pname" type="text" placeholder="Li, Chen" />
-      </div>
-      <div class="col-12" style="display:flex;gap:.5rem;margin-top:.5rem">
-        <button id="goBtn" class="btn primary" type="button">Go</button>
-        <button id="startBtn" class="btn" type="button">Start Over</button>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <div class="grid" style="margin-top:1rem">
-    <section class="card" role="region" aria-labelledby="sumHeading">
-      <h2 id="sumHeading" style="margin:.25rem 0 1rem;">Summary</h2>
-      <div id="sumEmpty" class="help">No record loaded.</div>
-      <div id="sum" hidden>
-        <table>
-          <tbody>
-            <tr><th scope="row">ID</th><td id="s-id"></td></tr>
-            <tr><th scope="row">Name</th><td id="s-name"></td></tr>
-            <tr><th scope="row">Email</th><td id="s-email"></td></tr>
-            <tr><th scope="row">Programme</th><td id="s-programme"></td></tr>
-            <tr><th scope="row">Term</th><td id="s-term"></td></tr>
-            <tr><th scope="row">Status</th><td id="s-status"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card" role="region" aria-labelledby="taskHeading">
-      <h2 id="taskHeading" style="margin:.25rem 0 1rem;">Tasks (simulated)</h2>
-      <div id="taskEmpty" class="help">Load a record to enable tasks.</div>
-      <div id="task" hidden>
-        <h3 style="margin:.5rem 0 .5rem;">Change status</h3>
-        <div class="row">
-          <div class="col-6">
-            <label for="statusSel">New status</label>
-            <select id="statusSel">
-              <option value="">— Select —</option>
-              <option>Active</option>
-              <option>Leave of Absence</option>
-              <option>Graduated</option>
-              <option>Suspended</option>
-            </select>
+    <!-- Views -->
+    <section id="view-home" class="view">
+      <div class="welcome">
+        <h1 class="welcome__title">Welcome</h1>
+        <div class="card">
+          <div class="tabs" role="tablist" aria-label="Navigation mode">
+            <button id="tab-search" role="tab" aria-selected="true" class="tab tab--active">Search</button>
+            <button id="tab-direct" role="tab" aria-selected="false" class="tab">Direct Navigation</button>
           </div>
-          <div class="col-4"><button id="saveStatusBtn" class="btn success" type="button">Save status</button></div>
-        </div>
 
-        <h3 style="margin:1rem 0 .5rem;">Addresses</h3>
-        <div class="toolbar" role="toolbar" aria-label="Address actions">
-          <button id="addrInsert" class="btn" type="button">Insert</button>
-          <button id="addrDelete" class="btn" type="button">Delete</button>
-          <button id="addrFilter" class="btn" type="button">Filter</button>
+          <div id="panel-search" role="tabpanel" aria-labelledby="tab-search" class="panel panel--active">
+            <label class="sr-only" for="centerSearchInput">Search for pages, menus and jobs</label>
+            <input id="centerSearchInput" class="input input--lg" type="text" placeholder="Pages, Menus, Jobs and Quickflows" autocomplete="off" />
+            <ul id="searchResults" class="listbox" role="listbox" aria-label="Search results"></ul>
+          </div>
+
+          <div id="panel-direct" role="tabpanel" aria-labelledby="tab-direct" class="panel">
+            <label for="directCode" class="label">Enter page code</label>
+            <div class="inline">
+              <input id="directCode" class="input" type="text" placeholder="e.g., SWADDER" inputmode="latin" />
+              <button id="goDirect" class="btn btn--primary">Go</button>
+            </div>
+            <p class="hint">Try <strong>SWADDER</strong> for the Address Information form.</p>
+          </div>
         </div>
-        <table aria-label="Addresses">
-          <thead><tr><th>Type</th><th>Line 1</th><th>City</th><th>Postcode</th><th>From</th><th>To</th></tr></thead>
-          <tbody id="addrBody"></tbody>
-        </table>
       </div>
     </section>
-  </div>
 
-  <dialog id="searchDlg" aria-labelledby="dlgTitle">
-    <form method="dialog">
-      <h3 id="dlgTitle">Person Search</h3>
-      <p class="help">Use % as a wildcard. Example: Last Name = 'P%' finds Patel, Price, etc. Double-click a row (or select and Choose).</p>
-      <div class="row">
-        <div class="col-6"><label for="fId">ID</label><input id="fId" type="text" placeholder="2019%%%%%" /></div>
-        <div class="col-6"><label for="fEmail">Email</label><input id="fEmail" type="text" placeholder="@example.edu" /></div>
-        <div class="col-6"><label for="fLast">Last Name</label><input id="fLast" type="text" placeholder="Patel" /></div>
-        <div class="col-6"><label for="fFirst">First Name</label><input id="fFirst" type="text" placeholder="Isla" /></div>
+    <!-- Key block for SWADDER -->
+    <section id="view-swadder-key" class="view hidden" aria-labelledby="swadderKeyTitle">
+      <header class="keyblock">
+        <h2 id="swadderKeyTitle" class="keyblock__title">ID:</h2>
+        <input id="key-id" class="input input--id" type="text" aria-label="ID" placeholder="Enter ID (e.g., T00031879)" />
+        <button id="key-go" class="btn btn--primary">Go</button>
+      </header>
+      <p class="muted">Get Started: Complete the fields above and click Go. To search by name, press TAB from an ID field, enter your search criteria, and then press ENTER.</p>
+    </section>
+
+    <!-- SWADDER form -->
+    <section id="view-swadder-form" class="view hidden">
+      <div class="form">
+        <div class="form__section">
+          <div class="form__sectionTitle">ADDRESS INFORMATION</div>
+          <div class="grid">
+            <label class="form__label">Type
+              <select id="addrType" class="select">
+                <option value="PH">PH — Permanent Home</option>
+                <option value="MA">MA — Mailing</option>
+                <option value="TT">TT — Term-Time</option>
+              </select>
+            </label>
+            <label class="form__label">State/Prov
+              <input id="state" class="input" type="text" />
+            </label>
+            <label class="form__label">ZIP/PC
+              <input id="zip" class="input" type="text" />
+            </label>
+            <label class="form__label">County
+              <input id="county" class="input" type="text" />
+            </label>
+            <label class="form__label">Nation
+              <input id="nation" class="input" type="text" />
+            </label>
+            <label class="form__label">From Date
+              <input id="fromDate" class="input" type="date" />
+            </label>
+            <label class="form__label">To Date
+              <input id="toDate" class="input" type="date" />
+            </label>
+            <label class="form__label col-span-2">Address 1
+              <input id="addr1" class="input" type="text" />
+            </label>
+            <label class="form__label col-span-2">Address 2
+              <input id="addr2" class="input" type="text" />
+            </label>
+            <label class="form__label col-span-2">Address 3
+              <input id="addr3" class="input" type="text" />
+            </label>
+            <label class="form__label">City
+              <input id="city" class="input" type="text" />
+            </label>
+          </div>
+        </div>
+
+        <div class="form__section">
+          <div class="form__sectionTitle">EMERGENCY CONTACTS ONLY</div>
+          <div class="grid">
+            <label class="form__label">First Name
+              <input id="emgFirst" class="input" type="text" />
+            </label>
+            <label class="form__label">Initial
+              <input id="emgInitial" class="input" type="text" />
+            </label>
+            <label class="form__label">Last Name
+              <input id="emgLast" class="input" type="text" />
+            </label>
+            <label class="form__label">Relationship
+              <input id="emgRelationship" class="input" type="text" />
+            </label>
+          </div>
+        </div>
+
+        <div class="form__section">
+          <div class="form__sectionTitle">TELEPHONE</div>
+          <div class="grid">
+            <label class="form__label">Number
+              <input id="phone" class="input" type="tel" />
+            </label>
+            <label class="form__label">Type
+              <select id="phoneType" class="select">
+                <option value="MOBILE">Mobile</option>
+                <option value="HOME">Home</option>
+                <option value="WORK">Work</option>
+              </select>
+            </label>
+            <label class="form__label checkbox">
+              <input id="phonePrimary" type="checkbox" /> Primary
+            </label>
+            <label class="form__label checkbox">
+              <input id="phoneUnlisted" type="checkbox" /> Unlisted
+            </label>
+            <label class="form__label checkbox">
+              <input id="phoneInactive" type="checkbox" /> Inactive
+            </label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--secondary" data-action="start-over">Start Over</button>
+          <button class="btn btn--primary" data-action="save">Save (Demo)</button>
+        </div>
       </div>
-      <div class="toolbar" style="margin-top:.75rem">
-        <button id="searchBtn" class="btn primary" value="search">Search</button>
-        <button id="clearBtn" class="btn" value="clear">Clear</button>
-        <button id="closeBtn" class="btn" value="cancel">Close</button>
-      </div>
-      <table style="margin-top:.75rem" aria-label="Search results">
-        <thead><tr><th>ID</th><th>Last</th><th>First</th><th>Email</th><th>Programme</th><th>Status</th></tr></thead>
-        <tbody id="resBody"></tbody>
-      </table>
-      <div class="toolbar" style="margin-top:.75rem;justify-content:flex-end">
-        <button id="chooseBtn" class="btn success" value="choose">Choose</button>
-      </div>
-    </form>
-  </dialog>
+    </section>
 
-  <p class="help" style="margin-top:1rem">All data are synthetic and stored only in memory for training.</p>
-</div>
+    <!-- Toasts / messages -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
 
-<script>
-// Inlined dataset (10 students)
-const DB = [
-  {
-    "id": "201900001",
-    "firstName": "Amira",
-    "lastName": "Khan",
-    "middleName": "J",
-    "dob": "1999-03-14",
-    "gender": "F",
-    "email": "amira.khan@example.edu",
-    "programme": "BSc Computer Science",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Term-Time",
-        "line1": "12 Oak Close",
-        "city": "Leeds",
-        "postcode": "LS2 3AB",
-        "nation": "GB",
-        "from": "2024-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07123 456789",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900002",
-    "firstName": "Ben",
-    "lastName": "Owens",
-    "middleName": "T",
-    "dob": "2000-07-22",
-    "gender": "M",
-    "email": "ben.owens@example.edu",
-    "programme": "BA History",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "4 Station Road",
-        "city": "York",
-        "postcode": "YO1 7EP",
-        "nation": "GB",
-        "from": "2018-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07111 222333",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900003",
-    "firstName": "Chen",
-    "lastName": "Li",
-    "middleName": "-",
-    "dob": "1998-11-05",
-    "gender": "M",
-    "email": "chen.li@example.edu",
-    "programme": "MSc Data Science",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Term-Time",
-        "line1": "Flat 3, 27 Park Lane",
-        "city": "Leeds",
-        "postcode": "LS3 1AA",
-        "nation": "GB",
-        "from": "2024-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07198 765432",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900004",
-    "firstName": "Dara",
-    "lastName": "Murphy",
-    "middleName": "R",
-    "dob": "1999-01-29",
-    "gender": "F",
-    "email": "dara.murphy@example.edu",
-    "programme": "BEng Mechanical Engineering",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "8 Maple Court",
-        "city": "Bradford",
-        "postcode": "BD1 2XY",
-        "nation": "GB",
-        "from": "2019-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07155 444555",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900005",
-    "firstName": "Elli",
-    "lastName": "Nguyen",
-    "middleName": "Q",
-    "dob": "2001-02-18",
-    "gender": "F",
-    "email": "elli.nguyen@example.edu",
-    "programme": "BA English",
-    "term": "2025/26",
-    "status": "Leave of Absence",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "22 River Street",
-        "city": "Sheffield",
-        "postcode": "S1 4DP",
-        "nation": "GB",
-        "from": "2019-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07177 888999",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900006",
-    "firstName": "Farah",
-    "lastName": "Ahmed",
-    "middleName": "L",
-    "dob": "1999-06-11",
-    "gender": "F",
-    "email": "farah.ahmed@example.edu",
-    "programme": "MBChB Medicine",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Term-Time",
-        "line1": "2 Kingfisher Way",
-        "city": "Leeds",
-        "postcode": "LS6 2PL",
-        "nation": "GB",
-        "from": "2024-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07166 123987",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900007",
-    "firstName": "Glen",
-    "lastName": "Brown",
-    "middleName": "S",
-    "dob": "1998-09-03",
-    "gender": "M",
-    "email": "glen.brown@example.edu",
-    "programme": "LLB Law",
-    "term": "2025/26",
-    "status": "Suspended",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "19 Church View",
-        "city": "Leeds",
-        "postcode": "LS7 3HF",
-        "nation": "GB",
-        "from": "2018-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07123 000111",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900008",
-    "firstName": "Hana",
-    "lastName": "Zhou",
-    "middleName": "M",
-    "dob": "2000-12-20",
-    "gender": "F",
-    "email": "hana.zhou@example.edu",
-    "programme": "BSc Psychology",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Term-Time",
-        "line1": "5 Riverside Walk",
-        "city": "Leeds",
-        "postcode": "LS5 4PN",
-        "nation": "GB",
-        "from": "2024-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07188 245678",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900009",
-    "firstName": "Isla",
-    "lastName": "Patel",
-    "middleName": "K",
-    "dob": "1999-10-07",
-    "gender": "F",
-    "email": "isla.patel@example.edu",
-    "programme": "MSc Artificial Intelligence",
-    "term": "2025/26",
-    "status": "Active",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "42 Meadow Rise",
-        "city": "Harrogate",
-        "postcode": "HG1 2TR",
-        "nation": "GB",
-        "from": "2019-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07144 567210",
-        "primary": true
-      }
-    ]
-  },
-  {
-    "id": "201900010",
-    "firstName": "Jude",
-    "lastName": "Singh",
-    "middleName": "A",
-    "dob": "1998-04-26",
-    "gender": "M",
-    "email": "jude.singh@example.edu",
-    "programme": "BA Philosophy",
-    "term": "2025/26",
-    "status": "Graduated",
-    "addresses": [
-      {
-        "type": "Home",
-        "line1": "Apartment 6, 10 City Way",
-        "city": "Leeds",
-        "postcode": "LS1 5BG",
-        "nation": "GB",
-        "from": "2017-09-01",
-        "to": null
-      }
-    ],
-    "phones": [
-      {
-        "type": "MB",
-        "number": "07122 333444",
-        "primary": true
-      }
-    ]
-  }
-];
-
-let current = null;
-const $ = sel => document.querySelector(sel);
-const $$ = sel => Array.from(document.querySelectorAll(sel));
-const $on = (el, ev, fn) => el.addEventListener(ev, fn);
-
-function showMsg(kind, text){ const bar=$("#msg"); bar.className="msgbar "+(kind||"info"); bar.textContent=text; bar.hidden=false; setTimeout(()=>bar.hidden=true,2000); }
-
-function renderState(){ if(!current){ $("#sumEmpty").hidden=false; $("#sum").hidden=true; $("#taskEmpty").hidden=false; $("#task").hidden=true; } else { $("#sumEmpty").hidden=true; $("#sum").hidden=false; $("#taskEmpty").hidden=true; $("#task").hidden=false; $("#s-id").textContent=current.id; $("#s-name").textContent=current.lastName+", "+current.firstName; $("#s-email").textContent=current.email; $("#s-programme").textContent=current.programme; $("#s-term").textContent=current.term; $("#s-status").textContent=current.status; renderAddresses(); } }
-function startOver(){ $("#pid").value=""; $("#pname").value=""; current=null; renderState(); $("#pid").focus(); }
-function go(){ const pid=$("#pid").value.trim(); const pname=$("#pname").value.trim(); let match=null; if(pid){ match = DB.find(s=>s.id===pid); } else if(pname){ const [last, first=""] = pname.split(",").map(s=>(s||"").trim().toLowerCase()); match = DB.find(s=> s.lastName.toLowerCase().startsWith(last) && s.firstName.toLowerCase().startsWith(first) ); } if(!match){ showMsg("warn","No matching record."); return; } current = JSON.parse(JSON.stringify(match)); renderState(); showMsg("info","Record loaded (simulated)."); }
-
-let addrFilterOn=false, selectedAddrIndex=null;
-function renderAddresses(){ const body=$("#addrBody"); body.innerHTML=""; if(!current||!current.addresses) return; let rows=current.addresses; if(addrFilterOn) rows = rows.filter(a=>(a.type||"").toLowerCase().includes("term")); rows.forEach((a,idx)=>{ const tr=document.createElement("tr"); tr.tabIndex=0; tr.dataset.index=idx; tr.innerHTML = `<td>${a.type||""}</td><td>${a.line1||""}</td><td>${a.city||""}</td><td>${a.postcode||""}</td><td>${a.from||""}</td><td>${a.to||""}</td>`; tr.addEventListener("click",()=>selectRow(tr)); tr.addEventListener("dblclick",()=>selectRow(tr)); body.appendChild(tr); }); }
-function selectRow(tr){ $$("#addrBody tr").forEach(r=>r.style.background=""); tr.style.background="#eef2ff"; selectedAddrIndex=parseInt(tr.dataset.index,10); }
-function insertAddress(){ if(!current){ showMsg("warn","Load a record first."); return; } const line1=prompt("Address line 1:"); if(!line1) return; const city=prompt("City:"); const postcode=prompt("Postcode:"); current.addresses=current.addresses||[]; current.addresses.push({type:"Other", line1, city, postcode, from:new Date().toISOString().slice(0,10), to:null}); renderAddresses(); showMsg("success","Address inserted (simulated)."); }
-function deleteAddress(){ if(!current){ showMsg("warn","Load a record first."); return; } if(selectedAddrIndex==null){ showMsg("warn","Select a row first."); return; } current.addresses.splice(selectedAddrIndex,1); selectedAddrIndex=null; renderAddresses(); showMsg("success","Address deleted (simulated)."); }
-function toggleFilter(){ addrFilterOn=!addrFilterOn; renderAddresses(); showMsg("info", addrFilterOn ? "Filter: Term-Time only" : "Filter: off"); }
-function saveStatus(){ if(!current){ showMsg("warn","Load a record first."); return; } const val=$("#statusSel").value; if(!val){ showMsg("warn","Choose a status."); $("#statusSel").focus(); return; } current.status=val; $("#s-status").textContent=current.status; $("#statusSel").value=""; showMsg("success","Status saved (simulated)."); }
-
-const dlg=$("#searchDlg"); let dlgSelection=null;
-function openSearch(){ dlgSelection=null; $("#fId").value=$("#pid").value.trim(); $("#fLast").value=""; $("#fFirst").value=""; $("#fEmail").value=""; $("#resBody").innerHTML=""; dlg.showModal(); setTimeout(()=>$("#fLast").focus(),10); }
-function closeSearch(){ dlg.close(); }
-function matchWildcard(field, pattern){ if(!pattern) return true; const esc=pattern.replace(/[.+^${}()|[\]\\]/g,"\\$&").replace(/%/g,".*").replace(/_/g,"."); const re=new RegExp("^"+esc+"$","i"); return re.test(field||""); }
-function search(){ const id=$("#fId").value.trim(); const last=$("#fLast").value.trim(); const first=$("#fFirst").value.trim(); const email=$("#fEmail").value.trim(); const results = DB.filter(s=> matchWildcard(s.id, id||"%%%%%") && matchWildcard(s.lastName, last||"%") && matchWildcard(s.firstName, first||"%") && matchWildcard(s.email, email||"%") ); const body=$("#resBody"); body.innerHTML=""; if(results.length===0){ const tr=document.createElement("tr"); tr.innerHTML="<td colspan='6'><em>No matches.</em></td>"; body.appendChild(tr); return; } results.forEach(s=>{ const tr=document.createElement("tr"); tr.tabIndex=0; tr.innerHTML=`<td>${s.id}</td><td>${s.lastName}</td><td>${s.firstName}</td><td>${s.email}</td><td>${s.programme}</td><td>${s.status}</td>`; tr.addEventListener("click",()=>{ $$("#resBody tr").forEach(r=>r.style.background=""); tr.style.background="#eef2ff"; dlgSelection=s.id; }); tr.addEventListener("dblclick",()=>{ dlgSelection=s.id; choose(); }); body.appendChild(tr); }); }
-function choose(){ if(!dlgSelection){ showMsg("warn","Select a row first."); return; } $("#pid").value=dlgSelection; dlg.close("choose"); $("#goBtn").focus(); showMsg("info","ID returned to Key Block."); }
-
-document.getElementById("goBtn").addEventListener("click", go);
-document.getElementById("startBtn").addEventListener("click", startOver);
-document.getElementById("optBtn").addEventListener("click", openSearch);
-document.getElementById("saveStatusBtn").addEventListener("click", saveStatus);
-document.getElementById("addrInsert").addEventListener("click", insertAddress);
-document.getElementById("addrDelete").addEventListener("click", deleteAddress);
-document.getElementById("addrFilter").addEventListener("click", toggleFilter);
-document.getElementById("resetBtn").addEventListener("click", ()=>location.reload());
-
-document.getElementById("searchBtn").addEventListener("click", (e)=>{ e.preventDefault(); search(); });
-document.getElementById("clearBtn").addEventListener("click", (e)=>{ e.preventDefault(); $("#fId").value=$("#fLast").value=$("#fFirst").value=$("#fEmail").value=""; $("#resBody").innerHTML=""; });
-document.getElementById("closeBtn").addEventListener("click", (e)=>{ e.preventDefault(); closeSearch(); });
-document.getElementById("chooseBtn").addEventListener("click", (e)=>{ e.preventDefault(); choose(); });
-
-document.addEventListener("keydown", e=>{ if(e.key==="Escape" && typeof dlg.close==="function" && dlg.open) dlg.close(); });
-
-renderState();
-</script>
+  <script src="app.js"></script>
 </body>
 </html>
