@@ -1,192 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mini Banner Training (Demo)</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini Banner Training</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Left sidebar (static) -->
-  <aside class="sidebar" aria-label="Main navigation">
-    <button class="sidebar__btn" data-route="home" aria-label="Dashboard">
-      <span class="icon">🏠</span><span class="label">Dashboard</span>
-    </button>
-    <button class="sidebar__btn" data-panel="applications" aria-label="Applications">
-      <span class="icon">🧭</span><span class="label">Applications</span>
-    </button>
-    <button class="sidebar__btn" data-panel="search" aria-label="Search">
-      <span class="icon">🔎</span><span class="label">Search</span>
-    </button>
-    <button class="sidebar__btn" data-panel="recent" aria-label="Recently opened">
-      <span class="icon">🕘</span><span class="label">Recently</span>
-    </button>
-    <button class="sidebar__btn" data-panel="help" aria-label="Help">
-      <span class="icon">❓</span><span class="label">Help</span>
-    </button>
-    <div class="sidebar__spacer"></div>
-    <button class="sidebar__btn" data-panel="user" aria-label="User">
-      <span class="icon">👤</span><span class="label">User</span>
-    </button>
-  </aside>
+<div class="appbar">
+  <div class="brand">ellucian</div>
+  <div class="spacer"></div>
+  <div class="badge">TRNG · Release: 3.10</div>
+</div>
 
-  <main id="app" class="app" role="main" aria-live="polite">
-    <!-- Top blue bar appears on 'pages' -->
-    <header id="topbar" class="topbar hidden" role="banner">
-      <div class="topbar__left">
-        <span id="topbarFormName" class="topbar__title">Address Information SWADDER 9.0 (DEMO)</span>
+<div class="container">
+  <!-- Welcome Screen -->
+  <div id="view-welcome" class="card">
+    <h1 style="margin-top:0">Welcome</h1>
+    <div class="tabbar" role="tablist" aria-label="Search mode">
+      <button id="tab-search" class="active" role="tab" aria-selected="true">Search</button>
+      <button id="tab-direct" role="tab" aria-selected="false">Direct Navigation</button>
+    </div>
+    <div class="searchbar">
+      <input id="search-input" type="text" placeholder="Pages, Menus, Jobs and Quickflows" aria-label="Search for Banner pages by acronym or name">
+      <button id="search-go" class="go" aria-label="Open selected page">Open</button>
+    </div>
+    <ul id="ac-list" class="autocomplete hidden" role="listbox" aria-label="Search results"></ul>
+    <p class="small">Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, or <strong>SFASLST</strong>.</p>
+  </div>
+
+  <!-- Key Block -->
+  <div id="view-keyblock" class="card hidden" aria-live="polite">
+    <h2 style="margin-top:0">Key Block</h2>
+    <p class="small">Enter an ID then press <strong>Go</strong> (or Enter). Example: <code>T00031879</code></p>
+    <div class="keyblock">
+      <label>ID
+        <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
+      </label>
+      <button id="kb-go" class="btn">Go</button>
+      <button id="kb-cancel" class="btn">Start Over</button>
+    </div>
+    <div id="kb-error" class="error hidden" role="alert"></div>
+  </div>
+
+  <!-- Forms -->
+  <div id="view-form" class="hidden">
+    <div class="toolbar">
+      <div class="title" id="form-title">Form</div>
+      <div>
+        <button id="btn-start" class="btn">Start Over</button>
+        <button id="btn-save" class="btn">Save</button>
       </div>
-      <div class="topbar__right">
-        <button class="btn btn--ghost" data-action="add">ADD</button>
-        <button class="btn btn--ghost" data-action="retrieve">RETRIEVE</button>
-        <button class="btn btn--ghost" data-action="related">RELATED</button>
-        <div class="menu">
-          <button class="btn btn--ghost" aria-haspopup="true" aria-expanded="false">TOOLS ▾</button>
-          <ul class="menu__list" role="menu" aria-label="Tools menu">
-            <li role="menuitem"><button class="menu__item" data-action="start-over">Start Over</button></li>
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <!-- Views -->
-    <section id="view-home" class="view">
-      <div class="welcome">
-        <h1 class="welcome__title">Welcome</h1>
-        <div class="card">
-          <div class="tabs" role="tablist" aria-label="Navigation mode">
-            <button id="tab-search" role="tab" aria-selected="true" class="tab tab--active">Search</button>
-            <button id="tab-direct" role="tab" aria-selected="false" class="tab">Direct Navigation</button>
-          </div>
-
-          <div id="panel-search" role="tabpanel" aria-labelledby="tab-search" class="panel panel--active">
-            <label class="sr-only" for="centerSearchInput">Search for pages, menus and jobs</label>
-            <input id="centerSearchInput" class="input input--lg" type="text" placeholder="Pages, Menus, Jobs and Quickflows" autocomplete="off" />
-            <ul id="searchResults" class="listbox" role="listbox" aria-label="Search results"></ul>
-          </div>
-
-          <div id="panel-direct" role="tabpanel" aria-labelledby="tab-direct" class="panel">
-            <label for="directCode" class="label">Enter page code</label>
-            <div class="inline">
-              <input id="directCode" class="input" type="text" placeholder="e.g., SWADDER" inputmode="latin" />
-              <button id="goDirect" class="btn btn--primary">Go</button>
-            </div>
-            <p class="hint">Try <strong>SWADDER</strong> for the Address Information form.</p>
-          </div>
+    </div>
+    <div class="form">
+      <!-- Person banner -->
+      <div class="section">
+        <h3>Person</h3>
+        <div class="grid">
+          <label>Banner ID<input id="f-id" type="text" disabled></label>
+          <label>Name<input id="f-name" type="text"></label>
+          <label>Date of Birth<input id="f-dob" type="date"></label>
+          <label>Program (Admissions)<input id="f-program" type="text"></label>
         </div>
       </div>
-    </section>
-
-    <!-- Key block for SWADDER -->
-    <section id="view-swadder-key" class="view hidden" aria-labelledby="swadderKeyTitle">
-      <header class="keyblock">
-        <h2 id="swadderKeyTitle" class="keyblock__title">ID:</h2>
-        <input id="key-id" class="input input--id" type="text" aria-label="ID" placeholder="Enter ID (e.g., T00031879)" />
-        <button id="key-go" class="btn btn--primary">Go</button>
-      </header>
-      <p class="muted">Get Started: Complete the fields above and click Go. To search by name, press TAB from an ID field, enter your search criteria, and then press ENTER.</p>
-    </section>
-
-    <!-- SWADDER form -->
-    <section id="view-swadder-form" class="view hidden">
-      <div class="form">
-        <div class="form__section">
-          <div class="form__sectionTitle">ADDRESS INFORMATION</div>
-          <div class="grid">
-            <label class="form__label">Type
-              <select id="addrType" class="select">
-                <option value="PH">PH — Permanent Home</option>
-                <option value="MA">MA — Mailing</option>
-                <option value="TT">TT — Term-Time</option>
-              </select>
-            </label>
-            <label class="form__label">State/Prov
-              <input id="state" class="input" type="text" />
-            </label>
-            <label class="form__label">ZIP/PC
-              <input id="zip" class="input" type="text" />
-            </label>
-            <label class="form__label">County
-              <input id="county" class="input" type="text" />
-            </label>
-            <label class="form__label">Nation
-              <input id="nation" class="input" type="text" />
-            </label>
-            <label class="form__label">From Date
-              <input id="fromDate" class="input" type="date" />
-            </label>
-            <label class="form__label">To Date
-              <input id="toDate" class="input" type="date" />
-            </label>
-            <label class="form__label col-span-2">Address 1
-              <input id="addr1" class="input" type="text" />
-            </label>
-            <label class="form__label col-span-2">Address 2
-              <input id="addr2" class="input" type="text" />
-            </label>
-            <label class="form__label col-span-2">Address 3
-              <input id="addr3" class="input" type="text" />
-            </label>
-            <label class="form__label">City
-              <input id="city" class="input" type="text" />
-            </label>
-          </div>
-        </div>
-
-        <div class="form__section">
-          <div class="form__sectionTitle">EMERGENCY CONTACTS ONLY</div>
-          <div class="grid">
-            <label class="form__label">First Name
-              <input id="emgFirst" class="input" type="text" />
-            </label>
-            <label class="form__label">Initial
-              <input id="emgInitial" class="input" type="text" />
-            </label>
-            <label class="form__label">Last Name
-              <input id="emgLast" class="input" type="text" />
-            </label>
-            <label class="form__label">Relationship
-              <input id="emgRelationship" class="input" type="text" />
-            </label>
-          </div>
-        </div>
-
-        <div class="form__section">
-          <div class="form__sectionTitle">TELEPHONE</div>
-          <div class="grid">
-            <label class="form__label">Number
-              <input id="phone" class="input" type="tel" />
-            </label>
-            <label class="form__label">Type
-              <select id="phoneType" class="select">
-                <option value="MOBILE">Mobile</option>
-                <option value="HOME">Home</option>
-                <option value="WORK">Work</option>
-              </select>
-            </label>
-            <label class="form__label checkbox">
-              <input id="phonePrimary" type="checkbox" /> Primary
-            </label>
-            <label class="form__label checkbox">
-              <input id="phoneUnlisted" type="checkbox" /> Unlisted
-            </label>
-            <label class="form__label checkbox">
-              <input id="phoneInactive" type="checkbox" /> Inactive
-            </label>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn btn--secondary" data-action="start-over">Start Over</button>
-          <button class="btn btn--primary" data-action="save">Save (Demo)</button>
+      <!-- Address information -->
+      <div class="section">
+        <h3>Address Information</h3>
+        <div class="grid">
+          <label>Type
+            <select id="f-addr-type">
+              <option value="PH">PH — Permanent Home</option>
+              <option value="TM">TM — Term-time</option>
+              <option value="PO">PO — PO Box</option>
+            </select>
+          </label>
+          <label>From Date<input id="f-from" type="date"></label>
+          <label>Address 1<input id="f-a1" type="text"></label>
+          <label>Address 2<input id="f-a2" type="text"></label>
+          <label>Address 3<input id="f-a3" type="text"></label>
+          <label>City<input id="f-city" type="text"></label>
+          <label>County<input id="f-county" type="text"></label>
+          <label>Nation<input id="f-nation" type="text"></label>
+          <label>ZIP/PC<input id="f-postal" type="text"></label>
+          <label>Source<input id="f-source" type="text"></label>
         </div>
       </div>
-    </section>
+      <!-- Emergency -->
+      <div class="section">
+        <h3>Emergency Contacts Only</h3>
+        <div class="grid">
+          <label>First Name<input id="f-ec-first" type="text"></label>
+          <label>Last Name<input id="f-ec-last" type="text"></label>
+          <label>Relationship<input id="f-ec-rel" type="text"></label>
+          <label>Phone<input id="f-ec-phone" type="text"></label>
+        </div>
+      </div>
+      <!-- Phones -->
+      <div class="section">
+        <h3>Telephone</h3>
+        <table class="table" id="phone-table">
+          <thead><tr><th>Number</th><th>Type</th><th>Primary</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <!-- SPAIDEN extra: General person -->
+      <div class="section" id="spaid-extra">
+        <h3>SPAIDEN — General Person</h3>
+        <div class="grid">
+          <label>Status<input id="spaid-status" type="text" value="Active"></label>
+          <label>Term<input id="spaid-term" type="text"></label>
+        </div>
+      </div>
+      <!-- SFASLST schedule -->
+      <div class="section" id="sfaslst">
+        <h3>SFASLST — Student Class Schedule</h3>
+        <table class="table" id="sched-table">
+          <thead><tr><th>CRN</th><th>Subj</th><th>Course</th><th>Title</th><th>Days</th><th>Time</th><th>Room</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-    <!-- Toasts / messages -->
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  </main>
+  <!-- SWIGENQ view -->
+  <div id="view-swingenq" class="card hidden">
+    <h2 style="margin-top:0">SWIGENQ — General Person Query</h2>
+    <div class="searchbar">
+      <input id="gq-input" type="text" placeholder="Search by name or ID (e.g., Maya, T0003)" aria-label="Search people">
+      <button id="gq-search" class="go">Search</button>
+    </div>
+    <table class="table" style="margin-top:.75rem">
+      <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th><th>Open in SPAIDEN</th></tr></thead>
+      <tbody id="gq-body"></tbody>
+    </table>
+    <p class="small">Tip: Click a row to load SPAIDEN.</p>
+  </div>
 
-  <script src="app.js"></script>
+  <!-- SAAADMS dedicated view -->
+  <div id="view-saaadms" class="hidden">
+    <div class="toolbar">
+      <div class="title">SAAADMS — Admissions</div>
+      <div><button id="adms-start" class="btn">Start Over</button></div>
+    </div>
+    <div class="form">
+      <div class="section">
+        <h3>Admissions Summary</h3>
+        <div class="grid">
+          <label>Banner ID<input id="adms-id" type="text" disabled></label>
+          <label>Name<input id="adms-name" type="text" disabled></label>
+          <label>Term<input id="adms-term" type="text"></label>
+          <label>Program<input id="adms-program" type="text"></label>
+          <label>Status<input id="adms-status" type="text"></label>
+          <label>Decision<input id="adms-decision" type="text"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Saved (demo only)</div>
+  <footer>© Training demo (fake data)</footer>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
