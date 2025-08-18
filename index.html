@@ -48,4 +48,262 @@
       <!-- “hamburger / applications” -->
       <button class="nav-icon" id="icon-menu" title="Applications" aria-label="Applications" data-nav="apps">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- home (dashboard) -->
+      <button class="nav-icon" id="icon-home" title="Dashboard" aria-label="Dashboard" data-nav="dashboard" aria-current="page">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 11l9-7 9 7"/><path d="M9 22V12h6v10"/>
+        </svg>
+      </button>
+
+      <!-- grid (applications) -->
+      <button class="nav-icon" id="icon-grid" title="Applications" aria-label="Applications" data-nav="apps">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </button>
+
+      <!-- search -->
+      <button class="nav-icon" id="icon-search" title="Search" aria-label="Search" data-nav="search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- recently opened -->
+      <button class="nav-icon" id="icon-recent" title="Recently Opened" aria-label="Recently Opened" data-nav="recent">
+        <span class="badge" id="badge-recent">0</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 7h18v13H3z"/><path d="M3 7l3-4h12l3 4"/>
+        </svg>
+      </button>
+
+      <!-- help -->
+      <button class="nav-icon" id="icon-help" title="Help" aria-label="Help" data-nav="help">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 2.5-3 4"/><line x1="12" y1="17" x2="12" y2="17"/>
+        </svg>
+      </button>
+
+      <!-- favorites (not active in mock) -->
+      <button class="nav-icon" id="icon-fav" title="Favorites (not enabled in mock)" aria-label="Favorites" disabled>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 17.3l-6.16 3.7 1.64-7.03L2 8.6l7.19-.61L12 1.5l2.81 6.49L22 8.6l-5.48 5.37 1.64 7.03z"/>
+        </svg>
+      </button>
+
+      <!-- sign out (not active in mock) -->
+      <button class="nav-icon" id="icon-signout" title="Sign Out (not enabled in mock)" aria-label="Sign Out" disabled>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M19 21V3"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-footer">
+      <!-- user -->
+      <button class="nav-icon" id="icon-user" title="User" aria-label="User">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="7" r="4"/><path d="M5.5 21a8.5 8.5 0 0117 0"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+  <!-- ======== /sidebar ======== -->
+
+  <!-- Main content area (your original UI) -->
+  <div class="main-area">
+    <div class="container">
+      <!-- Welcome Screen -->
+      <div id="view-welcome" class="card">
+        <h1 style="margin-top:0">Welcome</h1>
+        <div class="tabbar" role="tablist" aria-label="Search mode">
+          <button id="tab-search" class="active" role="tab" aria-selected="true">Search</button>
+          <button id="tab-direct" role="tab" aria-selected="false">Direct Navigation</button>
+        </div>
+        <div class="searchbar">
+          <input id="search-input" type="text" placeholder="Pages, Menus, Jobs and Quickflows" aria-label="Search for Banner pages by acronym or name" />
+          <button id="search-go" class="go" aria-label="Open selected page">Open</button>
+        </div>
+        <ul id="ac-list" class="autocomplete hidden" role="listbox" aria-label="Search results"></ul>
+        <p class="small">Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, or <strong>SFASLST</strong>.</p>
+      </div>
+
+      <!-- Recently Opened (simple placeholder; your app.js can populate if you’re tracking it) -->
+      <div id="recent-panel" class="card hidden" aria-live="polite">
+        <h2 style="margin-top:0">Recently Opened</h2>
+        <ul id="recent-list" class="list"></ul>
+        <button id="clear-recent" class="btn">Clear</button>
+      </div>
+
+      <!-- Key Block -->
+      <div id="view-keyblock" class="card hidden" aria-live="polite">
+        <h2 style="margin-top:0">Key Block</h2>
+        <p class="small">Enter an ID then press <strong>Go</strong> (or Enter). Example: <code>T00031879</code></p>
+        <div class="keyblock">
+          <label>ID
+            <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879" />
+          </label>
+          <button id="kb-go" class="btn">Go</button>
+          <button id="kb-cancel" class="btn">Start Over</button>
+        </div>
+        <div id="kb-error" class="error hidden" role="alert"></div>
+      </div>
+
+      <!-- Forms -->
+      <div id="view-form" class="hidden">
+        <div class="toolbar">
+          <div class="title" id="form-title">Form</div>
+          <div>
+            <button id="btn-start" class="btn">Start Over</button>
+            <button id="btn-save" class="btn">Save</button>
+          </div>
+        </div>
+        <div class="form">
+          <!-- Person banner -->
+          <div class="section">
+            <h3>Person</h3>
+            <div class="grid">
+              <label>Banner ID<input id="f-id" type="text" disabled /></label>
+              <label>Name<input id="f-name" type="text" /></label>
+              <label>Date of Birth<input id="f-dob" type="date" /></label>
+              <label>Program (Admissions)<input id="f-program" type="text" /></label>
+            </div>
+          </div>
+          <!-- Address information -->
+          <div class="section">
+            <h3>Address Information</h3>
+            <div class="grid">
+              <label>Type
+                <select id="f-addr-type">
+                  <option value="PH">PH — Permanent Home</option>
+                  <option value="TM">TM — Term-time</option>
+                  <option value="PO">PO — PO Box</option>
+                </select>
+              </label>
+              <label>From Date<input id="f-from" type="date" /></label>
+              <label>Address 1<input id="f-a1" type="text" /></label>
+              <label>Address 2<input id="f-a2" type="text" /></label>
+              <label>Address 3<input id="f-a3" type="text" /></label>
+              <label>City<input id="f-city" type="text" /></label>
+              <label>County<input id="f-county" type="text" /></label>
+              <label>Nation<input id="f-nation" type="text" /></label>
+              <label>ZIP/PC<input id="f-postal" type="text" /></label>
+              <label>Source<input id="f-source" type="text" /></label>
+            </div>
+          </div>
+          <!-- Emergency -->
+          <div class="section">
+            <h3>Emergency Contacts Only</h3>
+            <div class="grid">
+              <label>First Name<input id="f-ec-first" type="text" /></label>
+              <label>Last Name<input id="f-ec-last" type="text" /></label>
+              <label>Relationship<input id="f-ec-rel" type="text" /></label>
+              <label>Phone<input id="f-ec-phone" type="text" /></label>
+            </div>
+          </div>
+          <!-- Phones -->
+          <div class="section">
+            <h3>Telephone</h3>
+            <table class="table" id="phone-table">
+              <thead><tr><th>Number</th><th>Type</th><th>Primary</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <!-- SPAIDEN extra: General person -->
+          <div class="section" id="spaid-extra">
+            <h3>SPAIDEN — General Person</h3>
+            <div class="grid">
+              <label>Status<input id="spaid-status" type="text" value="Active" /></label>
+              <label>Term<input id="spaid-term" type="text" /></label>
+            </div>
+          </div>
+          <!-- SFASLST schedule -->
+          <div class="section" id="sfaslst">
+            <h3>SFASLST — Student Class Schedule</h3>
+            <table class="table" id="sched-table">
+              <thead><tr><th>CRN</th><th>Subj</th><th>Course</th><th>Title</th><th>Days</th><th>Time</th><th>Room</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SWIGENQ view -->
+      <div id="view-swingenq" class="card hidden">
+        <h2 style="margin-top:0">SWIGENQ — General Person Query</h2>
+        <div class="searchbar">
+          <input id="gq-input" type="text" placeholder="Search by name or ID (e.g., Maya, T0003)" aria-label="Search people" />
+          <button id="gq-search" class="go">Search</button>
+        </div>
+        <table class="table" style="margin-top:.75rem">
+          <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th><th>Open in SPAIDEN</th></tr></thead>
+          <tbody id="gq-body"></tbody>
+        </table>
+        <p class="small">Tip: Click a row to load SPAIDEN.</p>
+      </div>
+
+      <!-- SAAADMS dedicated view -->
+      <div id="view-saaadms" class="hidden">
+        <div class="toolbar">
+          <div class="title">SAAADMS — Admissions</div>
+          <div><button id="adms-start" class="btn">Start Over</button></div>
+        </div>
+        <div class="form">
+          <div class="section">
+            <h3>Admissions Summary</h3>
+            <div class="grid">
+              <label>Banner ID<input id="adms-id" type="text" disabled /></label>
+              <label>Name<input id="adms-name" type="text" disabled /></label>
+              <label>Term<input id="adms-term" type="text" /></label>
+              <label>Program<input id="adms-program" type="text" /></label>
+              <label>Status<input id="adms-status" type="text" /></label>
+              <label>Decision<input id="adms-decision" type="text" /></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite">Saved (demo only)</div>
+      <footer>© Training demo (fake data)</footer>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+<!-- Tiny, non-invasive wiring for the sidebar -->
+<script>
+  (function(){
+    function setActive(btn){
+      document.querySelectorAll('.nav-icon').forEach(b=>b.removeAttribute('aria-current'));
+      if(btn) btn.setAttribute('aria-current','page');
+    }
+    function show(id){
+      ['view-welcome','recent-panel','view-keyblock','view-form','view-swingenq','view-saaadms']
+        .forEach(v=>{ const el=document.getElementById(v); if(el) el.classList.add('hidden'); });
+      const target=document.getElementById(id);
+      if(target) target.classList.remove('hidden');
+    }
+    // Icons
+    document.getElementById('icon-home')?.addEventListener('click',e=>{ show('view-welcome'); setActive(e.currentTarget); });
+    document.getElementById('icon-menu')?.addEventListener('click',()=> alert('Applications menu is not implemented in this mock.'));
+    document.getElementById('icon-grid')?.addEventListener('click',()=> alert('Applications menu is not implemented in this mock.'));
+    document.getElementById('icon-search')?.addEventListener('click',e=>{
+      show('view-welcome'); setActive(e.currentTarget);
+      const inp=document.getElementById('search-input'); if(inp){ inp.focus(); inp.select && inp.select(); }
+    });
+    document.getElementById('icon-recent')?.addEventListener('click',e=>{ show('recent-panel'); setActive(e.currentTarget); });
+    document.getElementById('icon-help')?.addEventListener('click',()=> alert(
+      'Keyboard shortcuts (mock):\n• Ctrl+M Applications\n• Ctrl+Y Recently Opened\n• Ctrl+Shift+X Dashboard\n• Ctrl+D Favorites\n• Ctrl+Shift+L Help\n• Ctrl+Shift+Y Search\n• Ctrl+Shift+F Sign Out'
+    ));
+    // Optional: disable real Home key to avoid confusion (mock doesn’t use it)
+    window.addEventListener('keydown',ev=>{ if(ev.key==='Home'){ ev.preventDefault(); } });
+  })();
+</script>
+</body>
+</html>
