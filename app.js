@@ -256,5 +256,62 @@
     bindGQ();
     bindChrome();
   });
-
 })();
+// ===== sidebar + recently-opened wiring =====
+(function(){
+  const VIEWS = ['view-welcome','recent-panel','view-keyblock','view-form','view-swingenq','view-saaadms'];
+  const recent = [];
+
+  function showView(id){
+    VIEWS.forEach(v => document.getElementById(v)?.classList.add('hidden'));
+    document.getElementById(id)?.classList.remove('hidden');
+  }
+  function setActive(btn){
+    document.querySelectorAll('.nav-icon').forEach(b => b.removeAttribute('aria-current'));
+    btn?.setAttribute('aria-current','page');
+  }
+  function recentAdd(code, title){
+    recent.unshift({code, title}); while (recent.length > 8) recent.pop();
+    const b = document.getElementById('badge-recent'); if (b) b.textContent = String(recent.length);
+    const list = document.getElementById('recent-list');
+    if (list){ list.innerHTML = recent.map(r => `<li><strong>${r.title}</strong> (${r.code})</li>`).join(''); }
+  }
+  // expose for your existing open-page handlers if you want:
+  window.__recentAdd = recentAdd;
+
+  // Home → Welcome
+  document.getElementById('icon-home')?.addEventListener('click', e => {
+    showView('view-welcome'); setActive(e.currentTarget);
+  });
+
+  // Search → Welcome + focus
+  document.getElementById('icon-search')?.addEventListener('click', e => {
+    showView('view-welcome'); setActive(e.currentTarget);
+    const inp = document.getElementById('search-input'); if (inp){ inp.focus(); inp.select?.(); }
+  });
+
+  // Recently Opened
+  document.getElementById('icon-recent')?.addEventListener('click', e => {
+    showView('recent-panel'); setActive(e.currentTarget);
+  });
+
+  // Help
+  document.getElementById('icon-help')?.addEventListener('click', () => alert(
+    'Keyboard shortcuts (mock):\n• Ctrl+M Applications\n• Ctrl+Y Recently Opened\n• Ctrl+Shift+X Dashboard\n• Ctrl+D Favorites\n• Ctrl+Shift+L Help\n• Ctrl+Shift+Y Search\n• Ctrl+Shift+F Sign Out'
+  ));
+
+  // Placeholders
+  document.getElementById('icon-menu')?.addEventListener('click', () =>
+    alert('Applications menu is not implemented in this mock.')
+  );
+  document.getElementById('icon-grid')?.addEventListener('click', () =>
+    alert('Applications menu is not implemented in this mock.')
+  );
+
+  // Avoid confusion: disable the real Home key in the mock
+  window.addEventListener('keydown', ev => { if (ev.key === 'Home') ev.preventDefault(); });
+
+  // Optional: mark Home as active at start
+  setActive(document.getElementById('icon-home'));
+})();
+
