@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mini Banner Training</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css" />
+
+<!-- Compact sidebar styles (safe to leave inline or move to styles.css) -->
+<style>
+  .layout{display:flex; min-height:100vh;}
+  .sidebar--compact{
+    width:56px; background:#3b3f44; color:#fff; display:flex; flex-direction:column;
+    align-items:center; padding-top:6px; flex:0 0 56px;
+  }
+  .nav-group{ display:flex; flex-direction:column; gap:2px; width:100%; }
+  .nav-footer{ margin-top:auto; margin-bottom:8px; }
+  .nav-icon{
+    position:relative; width:56px; height:44px; display:flex; align-items:center; justify-content:center;
+    background:transparent; border:0; color:#fff; opacity:.95; cursor:pointer;
+  }
+  .nav-icon:hover{ background:#2f3337; }
+  .nav-icon[disabled]{ opacity:.45; cursor:not-allowed; }
+  .nav-icon[aria-current="page"]::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:#39a0ff; border-radius:0 2px 2px 0;
+  }
+  .nav-icon svg{ pointer-events:none; }
+  .nav-icon .badge{
+    position:absolute; right:6px; top:6px; font-size:10px; line-height:1;
+    background:#5a6872; border-radius:999px; padding:2px 5px;
+  }
+  /* main content wrapper next to the rail */
+  .main-area{flex:1; min-width:0;}
+</style>
 </head>
+
 <body>
 <div class="appbar">
   <div class="brand">ellucian</div>
@@ -13,154 +41,11 @@
   <div class="badge">TRNG · Release: 3.10</div>
 </div>
 
-<div class="container">
-  <!-- Welcome Screen -->
-  <div id="view-welcome" class="card">
-    <h1 style="margin-top:0">Welcome</h1>
-    <div class="tabbar" role="tablist" aria-label="Search mode">
-      <button id="tab-search" class="active" role="tab" aria-selected="true">Search</button>
-      <button id="tab-direct" role="tab" aria-selected="false">Direct Navigation</button>
-    </div>
-    <div class="searchbar">
-      <input id="search-input" type="text" placeholder="Pages, Menus, Jobs and Quickflows" aria-label="Search for Banner pages by acronym or name">
-      <button id="search-go" class="go" aria-label="Open selected page">Open</button>
-    </div>
-    <ul id="ac-list" class="autocomplete hidden" role="listbox" aria-label="Search results"></ul>
-    <p class="small">Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, or <strong>SFASLST</strong>.</p>
-  </div>
-
-  <!-- Key Block -->
-  <div id="view-keyblock" class="card hidden" aria-live="polite">
-    <h2 style="margin-top:0">Key Block</h2>
-    <p class="small">Enter an ID then press <strong>Go</strong> (or Enter). Example: <code>T00031879</code></p>
-    <div class="keyblock">
-      <label>ID
-        <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
-      </label>
-      <button id="kb-go" class="btn">Go</button>
-      <button id="kb-cancel" class="btn">Start Over</button>
-    </div>
-    <div id="kb-error" class="error hidden" role="alert"></div>
-  </div>
-
-  <!-- Forms -->
-  <div id="view-form" class="hidden">
-    <div class="toolbar">
-      <div class="title" id="form-title">Form</div>
-      <div>
-        <button id="btn-start" class="btn">Start Over</button>
-        <button id="btn-save" class="btn">Save</button>
-      </div>
-    </div>
-    <div class="form">
-      <!-- Person banner -->
-      <div class="section">
-        <h3>Person</h3>
-        <div class="grid">
-          <label>Banner ID<input id="f-id" type="text" disabled></label>
-          <label>Name<input id="f-name" type="text"></label>
-          <label>Date of Birth<input id="f-dob" type="date"></label>
-          <label>Program (Admissions)<input id="f-program" type="text"></label>
-        </div>
-      </div>
-      <!-- Address information -->
-      <div class="section">
-        <h3>Address Information</h3>
-        <div class="grid">
-          <label>Type
-            <select id="f-addr-type">
-              <option value="PH">PH — Permanent Home</option>
-              <option value="TM">TM — Term-time</option>
-              <option value="PO">PO — PO Box</option>
-            </select>
-          </label>
-          <label>From Date<input id="f-from" type="date"></label>
-          <label>Address 1<input id="f-a1" type="text"></label>
-          <label>Address 2<input id="f-a2" type="text"></label>
-          <label>Address 3<input id="f-a3" type="text"></label>
-          <label>City<input id="f-city" type="text"></label>
-          <label>County<input id="f-county" type="text"></label>
-          <label>Nation<input id="f-nation" type="text"></label>
-          <label>ZIP/PC<input id="f-postal" type="text"></label>
-          <label>Source<input id="f-source" type="text"></label>
-        </div>
-      </div>
-      <!-- Emergency -->
-      <div class="section">
-        <h3>Emergency Contacts Only</h3>
-        <div class="grid">
-          <label>First Name<input id="f-ec-first" type="text"></label>
-          <label>Last Name<input id="f-ec-last" type="text"></label>
-          <label>Relationship<input id="f-ec-rel" type="text"></label>
-          <label>Phone<input id="f-ec-phone" type="text"></label>
-        </div>
-      </div>
-      <!-- Phones -->
-      <div class="section">
-        <h3>Telephone</h3>
-        <table class="table" id="phone-table">
-          <thead><tr><th>Number</th><th>Type</th><th>Primary</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <!-- SPAIDEN extra: General person -->
-      <div class="section" id="spaid-extra">
-        <h3>SPAIDEN — General Person</h3>
-        <div class="grid">
-          <label>Status<input id="spaid-status" type="text" value="Active"></label>
-          <label>Term<input id="spaid-term" type="text"></label>
-        </div>
-      </div>
-      <!-- SFASLST schedule -->
-      <div class="section" id="sfaslst">
-        <h3>SFASLST — Student Class Schedule</h3>
-        <table class="table" id="sched-table">
-          <thead><tr><th>CRN</th><th>Subj</th><th>Course</th><th>Title</th><th>Days</th><th>Time</th><th>Room</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- SWIGENQ view -->
-  <div id="view-swingenq" class="card hidden">
-    <h2 style="margin-top:0">SWIGENQ — General Person Query</h2>
-    <div class="searchbar">
-      <input id="gq-input" type="text" placeholder="Search by name or ID (e.g., Maya, T0003)" aria-label="Search people">
-      <button id="gq-search" class="go">Search</button>
-    </div>
-    <table class="table" style="margin-top:.75rem">
-      <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th><th>Open in SPAIDEN</th></tr></thead>
-      <tbody id="gq-body"></tbody>
-    </table>
-    <p class="small">Tip: Click a row to load SPAIDEN.</p>
-  </div>
-
-  <!-- SAAADMS dedicated view -->
-  <div id="view-saaadms" class="hidden">
-    <div class="toolbar">
-      <div class="title">SAAADMS — Admissions</div>
-      <div><button id="adms-start" class="btn">Start Over</button></div>
-    </div>
-    <div class="form">
-      <div class="section">
-        <h3>Admissions Summary</h3>
-        <div class="grid">
-          <label>Banner ID<input id="adms-id" type="text" disabled></label>
-          <label>Name<input id="adms-name" type="text" disabled></label>
-          <label>Term<input id="adms-term" type="text"></label>
-          <label>Program<input id="adms-program" type="text"></label>
-          <label>Status<input id="adms-status" type="text"></label>
-          <label>Decision<input id="adms-decision" type="text"></label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">Saved (demo only)</div>
-  <footer>© Training demo (fake data)</footer>
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+<div class="layout">
+  <!-- ======== NEW: Compact icon-only sidebar ======== -->
+  <aside class="sidebar sidebar--compact" role="navigation" aria-label="Main">
+    <div class="nav-group">
+      <!-- “hamburger / applications” -->
+      <button class="nav-icon" id="icon-menu" title="Applications" aria-label="Applications" data-nav="apps">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1
