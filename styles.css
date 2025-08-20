@@ -249,3 +249,31 @@ body{ background: var(--bg); color: var(--ink); }
 }
 .toast.show{ opacity: 1; transform: translateY(0); }
 
+/* ==== Sidebar contrast fix (place at END of styles.css) ==== */
+.sidebar--compact{ background:#0b1726; } /* slightly deeper navy for contrast */
+
+.sidebar--compact .nav-icon{
+  color:#ffffff !important;                  /* FORCE white icons/text */
+}
+.sidebar--compact .nav-icon svg,
+.sidebar--compact .nav-icon path{
+  fill: currentColor !important;             /* ensure the SVG uses the white color */
+}
+
+.sidebar--compact .nav-icon:hover{ background:rgba(255,255,255,.12); }
+.sidebar--compact .nav-icon[aria-current="page"]{
+  background: var(--accent);
+  color:#ffffff !important;
+}
+.sidebar--compact .nav-icon[aria-current="page"] svg,
+.sidebar--compact .nav-icon[aria-current="page"] path{
+  fill:#ffffff !important;
+}
+
+/* keep the little red counter readable on dark bg */
+.sidebar--compact .nav-icon .badge{ border-color:#0b1726; }
+
+/* optional: clearer keyboard focus */
+.sidebar--compact .nav-icon:focus-visible{
+  outline:2px solid #fff; outline-offset:2px;
+}
