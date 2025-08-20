@@ -87,19 +87,25 @@
           <p class="small">Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, or <strong>SFASLST</strong>.</p>
         </div>
 
-        <!-- Key Block -->
-        <div id="view-keyblock" class="card hidden" aria-live="polite">
-          <h2 style="margin-top:0">Key Block</h2>
-          <p class="small">Enter an ID then press <strong>Go</strong> (or Enter). Example: <code>T00031879</code></p>
-          <div class="keyblock">
-            <label>ID
-              <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
-            </label>
-            <button id="kb-go" class="btn">Go</button>
-            <button id="kb-cancel" class="btn">Start Over</button>
-          </div>
-          <div id="kb-error" class="error hidden" role="alert"></div>
-        </div>
+  <!-- Key Block -->
+  <div id="view-keyblock" class="card hidden" aria-live="polite">
+    <h2 style="margin-top:0">Key Block</h2>
+    <p class="small" id="kb-hint">Enter the required fields, then press <strong>Go</strong> (or Enter).</p>
+
+    <div class="keyblock">
+      <label id="kb-id-wrap">ID
+        <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
+      </label>
+
+      <!-- dynamic extra fields land here (Term, CRN, etc.) -->
+      <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
+
+      <button id="kb-go" class="btn">Go</button>
+      <button id="kb-cancel" class="btn">Start Over</button>
+    </div>
+
+    <div id="kb-error" class="error hidden" role="alert"></div>
+  </div>
 
         <!-- Generic Form Shell (used by SWADDER/SPAIDEN/SFASLST) -->
         <div id="view-form" class="hidden">
