@@ -80,3 +80,172 @@ footer{margin:2rem 0 1rem;color:#6b7280;text-align:center}
 }
 .main-area{ flex:1; min-width:0; }
 
+/* ===== Compact sidebar polish ===== */
+:root{
+  --appbar-h: 56px;
+  --sidebar-w: 56px;
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #0b5cab;          /* Ellucian-ish blue */
+  --accent-ink: #ffffff;
+}
+
+body{ background: var(--bg); color: var(--ink); }
+
+.appbar{
+  position: sticky; top: 0; z-index: 50;
+  height: var(--appbar-h);
+  display: flex; align-items: center; gap: .75rem;
+  padding: 0 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.layout{ display: flex; min-height: calc(100vh - var(--appbar-h)); }
+
+.sidebar--compact{
+  position: sticky; top: var(--appbar-h);
+  flex: 0 0 var(--sidebar-w);
+  display: flex;
+  background: #0e2237;
+  border-right: 1px solid #0b1a2a;
+}
+
+.sidebar--compact .nav-group{
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 10px 0;
+  width: 100%;
+}
+
+.nav-icon{
+  appearance: none; border: 0; background: transparent;
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center; color: #e6eef6;
+  cursor: pointer; position: relative;
+  transition: background .15s ease, transform .05s ease;
+}
+.nav-icon:hover{ background: rgba(255,255,255,.08); }
+.nav-icon:active{ transform: translateY(1px); }
+.nav-icon[disabled]{ opacity: .45; cursor: not-allowed; }
+.nav-icon[aria-current="page"]{ background: var(--accent); color: var(--accent-ink); }
+
+.nav-icon svg{ fill: currentColor; }
+
+.nav-icon .badge{
+  position: absolute; top: -3px; right: -3px;
+  background: #ef4444; color: #fff; font-size: 10px; line-height: 1;
+  padding: 2px 5px; border-radius: 999px; min-width: 18px; text-align: center;
+  border: 2px solid #0e2237;
+}
+
+.nav-footer{ margin-top: auto; }
+
+/* ===== Main area & cards ===== */
+.main-area{ flex: 1; min-width: 0; }
+.container{ max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  margin-bottom: 16px;
+}
+
+/* ===== Toolbar (form headers) ===== */
+.toolbar{
+  position: sticky; top: calc(var(--appbar-h));
+  z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px;
+  background: var(--card); border-bottom: 1px solid var(--line);
+  border-top-left-radius: 10px; border-top-right-radius: 10px;
+  margin: -16px -16px 12px; /* align with card edges */
+}
+.toolbar .title{ font-weight: 600; }
+
+/* ===== Buttons & small UI bits ===== */
+.btn, .go{
+  appearance: none; border: 1px solid var(--line); background: #f9fafb; color: var(--ink);
+  padding: 8px 12px; border-radius: 8px; cursor: pointer; font: inherit;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.btn:hover, .go:hover{ background: #f3f4f6; }
+.btn:active, .go:active{ transform: translateY(1px); }
+.btn.btn-mini{ padding: 4px 8px; font-size: 12px; }
+
+.badge{ background: #e5e7eb; color: #111827; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+
+/* ===== Key block & inputs ===== */
+.keyblock{
+  display: flex; align-items: flex-end; gap: .75rem; flex-wrap: wrap;
+}
+.keyblock label{ display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+.keyblock input{
+  min-width: 220px;
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit;
+  background: #fff;
+}
+.kb-extra label input{ min-width: 140px; }
+
+.error{
+  margin-top: .75rem; padding: 10px 12px; border-radius: 8px;
+  background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;
+}
+
+/* ===== Search bar & autocomplete ===== */
+.searchbar{ display: flex; gap: .5rem; align-items: center; }
+.searchbar input{
+  flex: 1; min-width: 260px;
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: #fff;
+}
+.autocomplete{
+  margin-top: .5rem; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: #fff; max-width: 560px;
+}
+.autocomplete li{
+  list-style: none; padding: 10px 12px; cursor: pointer; border-top: 1px solid var(--line);
+}
+.autocomplete li:first-child{ border-top: 0; }
+.autocomplete li:hover{ background: #f3f4f6; }
+
+/* ===== Tables (global) ===== */
+.table{ width: 100%; border-collapse: collapse; }
+.table th, .table td{
+  padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line);
+}
+.table thead th{ font-weight: 700; color: var(--muted); background: #f9fafb; position: sticky; top: calc(var(--appbar-h) + 44px); }
+.table tbody tr:nth-child(even){ background: #fbfdff; }
+.table tbody tr:hover{ background: #eef6ff; }
+
+/* Make roster rows feel clickable */
+#roster-table tbody tr{ cursor: pointer; }
+
+/* ===== Utilities ===== */
+.hidden{ display: none !important; }
+.small{ color: var(--muted); font-size: .9rem; }
+
+/* ===== Form sections grid tidy ===== */
+.form .section{ margin: 14px 0; }
+.form .grid{
+  display: grid; gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.form .grid label{ display: flex; flex-direction: column; gap: 6px; }
+.form input, .form select{
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: #fff;
+}
+
+/* ===== Toast ===== */
+.toast{
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  background: #0ea5e9; color: white; padding: 10px 14px; border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.12); opacity: 0; transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.show{ opacity: 1; transform: translateY(0); }
+
