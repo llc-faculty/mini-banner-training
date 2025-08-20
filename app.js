@@ -13,7 +13,32 @@
   const toast = (msg="Saved (demo only)") => {
     const t = $("#toast"); t.textContent = msg; t.classList.add("show");
     setTimeout(()=>t.classList.remove("show"), 1600);
+      // Treat schedules without an explicit term as this default
+const DEFAULT_TERM = "2025/26";
+
+// normalize like "202122" -> "2021/22"; otherwise pass-through
+function normalizeTerm(s) {
+  if (!s) return "";
+  const t = String(s).trim();
+  if (/^\d{6}$/.test(t)) return `${t.slice(0,4)}/${t.slice(4)}`;
+  return t;
+}
+
+// find schedule entries for a given term+crn
+function peopleInSection(term, crn, data) {
+  const T = normalizeTerm(term);
+  const out = [];
+  (data||[]).forEach(p => {
+    (p.schedule||[]).forEach(sec => {
+      const secTerm = normalizeTerm(sec.term || DEFAULT_TERM);
+      if (secTerm === T && String(sec.crn) === String(crn)) out.push({person:p, sec});
+    });
+  });
+  return out;
+}
   };
+
+
   let dataset = [];
   let currentForm = null;
   let selectedPerson = null;
