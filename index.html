@@ -87,27 +87,27 @@
           <p class="small">Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, or <strong>SFASLST</strong>.</p>
         </div>
 
-  <!-- Key Block -->
-  <div id="view-keyblock" class="card hidden" aria-live="polite">
-    <h2 style="margin-top:0">Key Block</h2>
-    <p class="small" id="kb-hint">Enter the required fields, then press <strong>Go</strong> (or Enter).</p>
+        <!-- Key Block -->
+        <div id="view-keyblock" class="card hidden" aria-live="polite">
+          <h2 style="margin-top:0">Key Block</h2>
+          <p class="small" id="kb-hint">Enter the required fields, then press <strong>Go</strong> (or Enter).</p>
 
-    <div class="keyblock">
-      <label id="kb-id-wrap">ID
-        <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
-      </label>
+          <div class="keyblock">
+            <label id="kb-id-wrap">ID
+              <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
+            </label>
 
-      <!-- dynamic extra fields land here (Term, CRN, etc.) -->
-      <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
+            <!-- dynamic extra fields land here (Term, CRN, etc.) -->
+            <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
 
-      <button id="kb-go" class="btn">Go</button>
-      <button id="kb-cancel" class="btn">Start Over</button>
-    </div>
+            <button id="kb-go" class="btn">Go</button>
+            <button id="kb-cancel" class="btn">Start Over</button>
+          </div>
 
-    <div id="kb-error" class="error hidden" role="alert"></div>
-  </div>
+          <div id="kb-error" class="error hidden" role="alert"></div>
+        </div>
 
-        <!-- Generic Form Shell (used by SWADDER/SPAIDEN/SFASLST) -->
+        <!-- Generic Form Shell (SWADDER/SPAIDEN/SFASLST) -->
         <div id="view-form" class="hidden">
           <div class="toolbar">
             <div class="title" id="form-title">Form</div>
@@ -180,7 +180,7 @@
           </div>
         </div>
 
-        <!-- SWIGENQ -->
+        <!-- SWIGENQ (optional table view) -->
         <div id="view-swingenq" class="card hidden">
           <h2 style="margin-top:0">SWIGENQ — General Person Query</h2>
           <div class="searchbar">
@@ -219,6 +219,20 @@
                 <label>Decision<input id="adms-decision" type="text"></label>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- SFASLST Roster (Term + CRN) -->
+        <div id="view-roster" class="hidden">
+          <div class="toolbar">
+            <div class="title">SFASLST — Class Roster</div>
+            <div><button id="roster-start" class="btn">Start Over</button></div>
+          </div>
+          <div class="section">
+            <table class="table" id="roster-table">
+              <thead><tr><th>ID</th><th>Name</th><th>Program</th><th>Term</th><th>CRN</th></tr></thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
 
