@@ -2,301 +2,192 @@
   {
     "id": "T00031879",
     "firstName": "Alex",
-    "middleInitial": "R",
+    "middle": "R",
     "lastName": "Green",
+    "dob": "2003-04-14",
     "address": {
       "type": "PH",
       "line1": "12 Oakfield Road",
       "line2": "",
       "line3": "",
-      "city": "Bradchester",
+      "city": "BRADCHESTER",
       "county": "West Yorkshire",
+      "nation": "GB",
       "stateProv": "",
-      "postcode": "BD5 2XY",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
+      "postal": "BD5 2XY",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
     },
-    "emergency": {
-      "firstName": "Jamie",
-      "initial": "",
-      "lastName": "Green",
-      "relationship": "Sibling"
+    "phones": [
+      { "number": "+44 7700 900001", "type": "M", "primary": true }
+    ],
+    "emergency": { "first": "Jamie", "last": "Green", "relationship": "Sibling", "phone": "+44 7700 900011" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [
+      { "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }
+    ],
+    "generalStudent": [
+      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" },
+      { "term": "2024/25", "status": "Applicant", "level": "UG", "class": "", "feeRate": "Home" }
+    ],
+    "schedule": [
+      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" },
+      { "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }
+    ],
+    "courseHistory": [
+      { "term": "2024/25", "crn": "10021", "subject": "COMP", "course": "099", "title": "Programming Prep", "credits": 10, "grade": "A" }
+    ],
+    "registrationAudit": [
+      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "Added by student" }
+    ],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": { "tuition": 9250, "overdue": 0 },
+      "steps": [
+        { "name": "Confirm Personal Details", "confirmedAt": "2025-09-01T10:12:00Z" },
+        { "name": "Select Modules", "confirmedAt": "2025-09-02T14:33:00Z" }
+      ]
     },
-    "phone": {
-      "number": "+44 7700 900001",
-      "type": "MOBILE"
-    }
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
+    "photoUrl": ""
   },
   {
     "id": "T00031880",
     "firstName": "Sam",
-    "middleInitial": "J",
+    "middle": "J",
     "lastName": "Taylor",
+    "dob": "2002-11-20",
     "address": {
       "type": "PH",
       "line1": "3 Riverbank Close",
       "line2": "",
       "line3": "",
-      "city": "Northvale",
+      "city": "NORTHVALE",
       "county": "Greater Manchester",
+      "nation": "GB",
       "stateProv": "",
-      "postcode": "M1 4AB",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
+      "postal": "M1 4AB",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
     },
-    "emergency": {
-      "firstName": "Morgan",
-      "initial": "",
-      "lastName": "Taylor",
-      "relationship": "Parent"
+    "phones": [
+      { "number": "+44 7700 900002", "type": "M", "primary": true }
+    ],
+    "emergency": { "first": "Morgan", "last": "Taylor", "relationship": "Parent", "phone": "+44 7700 900012" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [
+      { "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }
+    ],
+    "generalStudent": [
+      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
+    ],
+    "schedule": [
+      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" },
+      { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" }
+    ],
+    "courseHistory": [],
+    "registrationAudit": [
+      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "" }
+    ],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": { "tuition": 9250, "overdue": 0 },
+      "steps": [
+        { "name": "Confirm Personal Details", "confirmedAt": "2025-09-01T11:12:00Z" }
+      ]
     },
-    "phone": {
-      "number": "+44 7700 900002",
-      "type": "MOBILE"
-    }
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
+    "photoUrl": ""
   },
   {
     "id": "T00031881",
     "firstName": "Noor",
-    "middleInitial": "A",
+    "middle": "A",
     "lastName": "Khan",
+    "dob": "2001-06-05",
     "address": {
       "type": "PH",
       "line1": "44 Meadow View",
       "line2": "Flat 2",
       "line3": "",
-      "city": "Southbridge",
+      "city": "SOUTHBRIDGE",
       "county": "West Midlands",
+      "nation": "GB",
       "stateProv": "",
-      "postcode": "B2 6BT",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
+      "postal": "B2 6BT",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
     },
-    "emergency": {
-      "firstName": "Aisha",
-      "initial": "",
-      "lastName": "Khan",
-      "relationship": "Spouse"
+    "phones": [
+      { "number": "+44 7700 900003", "type": "M", "primary": true }
+    ],
+    "emergency": { "first": "Aisha", "last": "Khan", "relationship": "Spouse", "phone": "+44 7700 900013" },
+    "admissions": { "term": "2025/26", "program": "BSc Mathematics", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [
+      { "term": "2024/25", "program": "BSc Mathematics", "status": "Conditional", "decision": "Offer Made" }
+    ],
+    "generalStudent": [
+      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
+    ],
+    "schedule": [
+      { "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" },
+      { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" }
+    ],
+    "courseHistory": [
+      { "term": "2024/25", "crn": "33001", "subject": "HIST", "course": "101", "title": "World History", "credits": 20, "grade": "B" }
+    ],
+    "registrationAudit": [],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": { "tuition": 9250, "overdue": 0 },
+      "steps": []
     },
-    "phone": {
-      "number": "+44 7700 900003",
-      "type": "MOBILE"
-    }
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
+    "photoUrl": ""
   },
   {
     "id": "T00031882",
     "firstName": "Priya",
-    "middleInitial": "L",
+    "middle": "L",
     "lastName": "Shah",
+    "dob": "2004-02-11",
     "address": {
       "type": "PH",
       "line1": "7 Kingfisher Way",
       "line2": "",
       "line3": "",
-      "city": "Eastport",
+      "city": "EASTPORT",
       "county": "South Yorkshire",
+      "nation": "GB",
       "stateProv": "",
-      "postcode": "S1 1AA",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
+      "postal": "S1 1AA",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
     },
-    "emergency": {
-      "firstName": "Ravi",
-      "initial": "",
-      "lastName": "Shah",
-      "relationship": "Parent"
-    },
-    "phone": {
-      "number": "+44 7700 900004",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031883",
-    "firstName": "Liam",
-    "middleInitial": "O",
-    "lastName": "Neill",
-    "address": {
-      "type": "PH",
-      "line1": "81 Chapel Lane",
-      "line2": "",
-      "line3": "",
-      "city": "Westham",
-      "county": "Merseyside",
-      "stateProv": "",
-      "postcode": "L2 5ZZ",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Aoife",
-      "initial": "",
-      "lastName": "Neill",
-      "relationship": "Sibling"
-    },
-    "phone": {
-      "number": "+44 7700 900005",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031884",
-    "firstName": "Grace",
-    "middleInitial": "E",
-    "lastName": "Adebayo",
-    "address": {
-      "type": "PH",
-      "line1": "9 Lantern Court",
-      "line2": "",
-      "line3": "",
-      "city": "Millford",
-      "county": "West Yorkshire",
-      "stateProv": "",
-      "postcode": "LS2 3HF",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Tunde",
-      "initial": "",
-      "lastName": "Adebayo",
-      "relationship": "Parent"
-    },
-    "phone": {
-      "number": "+44 7700 900006",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031885",
-    "firstName": "Zoe",
-    "middleInitial": "M",
-    "lastName": "Martin",
-    "address": {
-      "type": "PH",
-      "line1": "22 Baker Crescent",
-      "line2": "Apt 4B",
-      "line3": "",
-      "city": "Greenfield",
-      "county": "Tyne and Wear",
-      "stateProv": "",
-      "postcode": "NE1 4RD",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Nick",
-      "initial": "",
-      "lastName": "Martin",
-      "relationship": "Partner"
-    },
-    "phone": {
-      "number": "+44 7700 900007",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031886",
-    "firstName": "Ethan",
-    "middleInitial": "J",
-    "lastName": "Brooks",
-    "address": {
-      "type": "PH",
-      "line1": "5 Maple Terrace",
-      "line2": "",
-      "line3": "",
-      "city": "Portleigh",
-      "county": "Hampshire",
-      "stateProv": "",
-      "postcode": "SO14 3AA",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Helen",
-      "initial": "",
-      "lastName": "Brooks",
-      "relationship": "Parent"
-    },
-    "phone": {
-      "number": "+44 7700 900008",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031887",
-    "firstName": "Mei",
-    "middleInitial": "Y",
-    "lastName": "Chen",
-    "address": {
-      "type": "PH",
-      "line1": "18 Orchard Mews",
-      "line2": "",
-      "line3": "",
-      "city": "Newford",
-      "county": "Cambridgeshire",
-      "stateProv": "",
-      "postcode": "CB1 2XY",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Hao",
-      "initial": "",
-      "lastName": "Chen",
-      "relationship": "Parent"
-    },
-    "phone": {
-      "number": "+44 7700 900009",
-      "type": "MOBILE"
-    }
-  },
-  {
-    "id": "T00031888",
-    "firstName": "Oliver",
-    "middleInitial": "K",
-    "lastName": "Evans",
-    "address": {
-      "type": "PH",
-      "line1": "30 Hillcrest Avenue",
-      "line2": "",
-      "line3": "",
-      "city": "Riverton",
-      "county": "West Yorkshire",
-      "stateProv": "",
-      "postcode": "WF3 8PQ",
-      "nationCode": "GB",
-      "nationName": "United Kingdom",
-      "fromDate": "2025-08-01",
-      "toDate": ""
-    },
-    "emergency": {
-      "firstName": "Sophie",
-      "initial": "",
-      "lastName": "Evans",
-      "relationship": "Sibling"
-    },
-    "phone": {
-      "number": "+44 7700 900010",
-      "type": "MOBILE"
-    }
-  }
-]
+    "phones": [
+      { "number": "+44 7700 900004", "type": "M", "primary": true }
+    ],
+    "emergency": { "first": "Ravi", "last": "Shah", "relationship": "Parent", "phone": "+44 7700 900014" },
+    "admissions": { "term": "2025/26", "program": "BA English Literature", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [
+      { "term": "2024/25", "program": "BA English Literature", "status": "Conditional", "decision": "Offer Made" }
+    ],
+    "generalStudent": [
+      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
+    ],
+    "schedule": [
+      { "term": "2025/26", "crn": "66012", "subject": "ENGL", "course": "101", "title": "Poetry & Prose", "days": "Tue", "time": "15:00-17:00", "room": "L2" },
+      { "t
