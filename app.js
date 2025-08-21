@@ -145,191 +145,118 @@
 
   // ====== SEARCH / WELCOME ==================================================
 
-// === PAGE REGISTRY ===
-// Anything you add here becomes searchable/openable from the Welcome screen.
-const pages = [
-  // Core pages that show real forms in the mock
-  { code: "SWADDER", name: "Address Information Form", open: () => showKeyBlock("SWADDER") },
-  { code: "SPAIDEN", name: "General Person Identification", open: () => showKeyBlock("SPAIDEN") },
-  { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") }, // now routes to KB to request ID+Term
-  { code: "SAAADMS", name: "Admissions Application", open: () => showKeyBlock("SAAADMS") },
-  { code: "SFASLST", name: "Student Class Schedule (Roster)", open: () => showKeyBlock("SFASLST") },
+  // Anything you add here becomes searchable/openable from the Welcome screen.
+  const pages = [
+    // Core pages that show real forms in the mock
+    { code: "SWADDER", name: "Address Information Form", open: () => showKeyBlock("SWADDER") },
+    { code: "SPAIDEN", name: "General Person Identification", open: () => showKeyBlock("SPAIDEN") },
+    { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") }, // ID + Term
+    { code: "SAAADMS", name: "Admissions Application", open: () => showKeyBlock("SAAADMS") },
+    { code: "SFASLST", name: "Student Class Schedule (Roster)", open: () => showKeyBlock("SFASLST") },
 
-  // New “Enquiry & Reporting” pages – stub cards (clickable UI, no data writes)
-  { code: "SOAIDEN", name: "Person Search", open: () => openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%") },
-  { code: "GUIALTI", name: "Alternate ID Search", open: () => openStub("GUIALTI", "Search by alternate IDs (e.g., SSN/SIN/TIN) and names") },
-  { code: "SOAIDNS", name: "Person Search Detail", open: () => openStub("SOAIDNS", "Dense person summary; collapse/expand sections; refine then select") },
+    // Enquiry & Reporting — stubs or KB-driven
+    { code: "SOAIDEN", name: "Person Search", open: () => openStub("SOAIDEN", "Search across ID/Name; wildcards like %SMI%") },
+    { code: "GUIALTI", name: "Alternate ID Search", open: () => openStub("GUIALTI", "Search by alternate IDs and names") },
+    { code: "SOAIDNS", name: "Person Search Detail", open: () => openStub("SOAIDNS", "Dense person summary; refine then select") },
 
-  // Small admin/reporting examples
-  { code: "GUASYST", name: "System Control Maintenance", open: () => showKeyBlock("GUASYST") },
+    { code: "GUASYST", name: "System Control Maintenance", open: () => showKeyBlock("GUASYST") },
+    { code: "SAASUMI", name: "Applicant Summary", open: () => showKeyBlock("SAASUMI") },
+    { code: "SWASLST", name: "Section List", open: () => showKeyBlock("SWASLST") },
+    { code: "SGASTDQ", name: "General Student Quick", open: () => showKeyBlock("SGASTDQ") },
+    { code: "SHACRSE", name: "Course Summary", open: () => showKeyBlock("SHACRSE") },
+    { code: "SFASTCA", name: "Registration Audit", open: () => showKeyBlock("SFASTCA") },
+    { code: "SHADGMQ", name: "Degree Summary", open: () => showKeyBlock("SHADGMQ") },
+    { code: "SWATRAC", name: "Tracking (Reg/Fees/Holds)", open: () => showKeyBlock("SWATRAC") },
+  ];
 
-  { code: "SAASUMI", name: "Applicant Summary", open: () => openStub("SAASUMI", "One-stop applicant summary view") },
-  { code: "SWASLST", name: "Section List", open: () => showKeyBlock("SWASLST") },
-  { code: "SGASTDQ", name: "General Student Quick", open: () => showKeyBlock("SGASTDQ") },
-  { code: "SHACRSE", name: "Course Summary", open: () => showKeyBlock("SHACRSE") },
-  { code: "SFASTCA", name: "Registration Audit", open: () => showKeyBlock("SFASTCA") },
-  { code: "SHADGMQ", name: "Degree Summary", open: () => showKeyBlock("SHADGMQ") },
-  { code: "SWATRAC", name: "Tracking (Reg/Fees/Holds)", open: () => showKeyBlock("SWATRAC") },
+  // helpful for debugging in the browser console:
+  window.pages = pages;
 
+  // === STUB PAGE HELPERS ===
+  function ensureStub(code, title, blurb) {
+    const id = `stub-${code}`;
+    if (document.getElementById(id)) return id;
 
-  // You can add more here later…
-];
-
-// helpful for debugging in the browser console:
-window.pages = pages;
-// === STUB PAGE HELPERS ===
-function ensureStub(code, title, blurb) {
-  const id = `stub-${code}`;
-  if (document.getElementById(id)) return id;
-
-  const host = document.querySelector(".container");
-  const card = document.createElement("section");
-  card.id = id;
-  card.className = "card hidden";
-  card.setAttribute("role", "region");
-  card.innerHTML = `
-    <h2 style="margin-top:0">${code} — ${title}</h2>
-    <p class="small" style="margin-bottom:.75rem">${blurb}</p>
-    <div class="section">
-      <div class="grid">
-        <label>Quick search<input type="text" placeholder="Try %SMI% or T0003…" aria-label="Stub search"></label>
-        <button class="btn" data-act="demo-search">Execute Query</button>
-        <button class="btn" data-act="open-spaiden">Open SPAIDEN</button>
-        <button class="btn" data-act="start-over">Start Over</button>
+    const host = document.querySelector(".container");
+    const card = document.createElement("section");
+    card.id = id;
+    card.className = "card hidden";
+    card.setAttribute("role", "region");
+    card.innerHTML = `
+      <h2 style="margin-top:0">${code} — ${title}</h2>
+      <p class="small" style="margin-bottom:.75rem">${blurb}</p>
+      <div class="section">
+        <div class="grid">
+          <label>Quick search<input type="text" placeholder="Try %SMI% or T0003…" aria-label="Stub search"></label>
+          <button class="btn" data-act="demo-search">Execute Query</button>
+          <button class="btn" data-act="open-spaiden">Open SPAIDEN</button>
+          <button class="btn" data-act="start-over">Start Over</button>
+        </div>
       </div>
-    </div>
-    <div class="section">
-      <table class="table">
-        <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  `;
-  host.appendChild(card);
+      <div class="section">
+        <table class="table">
+          <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    `;
+    host.appendChild(card);
 
-  // wire buttons
-  card.querySelector('[data-act="start-over"]').addEventListener("click", startOver);
-  card.querySelector('[data-act="open-spaiden"]').addEventListener("click", () => {
-    // Open SPAIDEN with the first listed match if any; else fall back to key block
-    const firstId = card.querySelector("tbody tr td")?.textContent?.trim();
-    if (firstId) {
-      const p = findById(firstId);
-      if (p) return showForm("SPAIDEN", p);
-    }
-    showKeyBlock("SPAIDEN");
-  });
-  card.querySelector('[data-act="demo-search"]').addEventListener("click", () => {
-    const q = card.querySelector('input[type="text"]').value.trim().toLowerCase();
-    const rows = (dataset || []).filter(p =>
-      p.id.toLowerCase().includes(q.replace(/%/g, "")) ||
-      p.firstName.toLowerCase().includes(q.replace(/%/g, "")) ||
-      p.lastName.toLowerCase().includes(q.replace(/%/g, ""))
-    );
-    const tb = card.querySelector("tbody"); tb.innerHTML = "";
-    rows.forEach(p => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${p.id}</td><td>${p.lastName}, ${p.firstName}</td><td>${p.dob || ""}</td><td>${p.admissions?.program || ""}</td>`;
-      tr.addEventListener("click", () => showForm("SPAIDEN", p));
-      tb.appendChild(tr);
+    // wire buttons
+    card.querySelector('[data-act="start-over"]').addEventListener("click", startOver);
+    card.querySelector('[data-act="open-spaiden"]').addEventListener("click", () => {
+      const firstId = card.querySelector("tbody tr td")?.textContent?.trim();
+      if (firstId) {
+        const p = findById(firstId);
+        if (p) return showForm("SPAIDEN", p);
+      }
+      showKeyBlock("SPAIDEN");
     });
-  });
-
-  return id;
-}
-function openStub(code, blurb = "Demo-only stub page") {
-  const item = pages.find(p => p.code === code);
-  const title = item?.name || "Page";
-  const id = ensureStub(code, title, blurb);
-
-  // hide all views, then show stub
-  ["view-welcome","recent-panel","view-keyblock","view-form","view-swingenq","view-saaadms","view-roster"]
-    .forEach(v => document.getElementById(v)?.classList.add("hidden"));
-  document.getElementById(id)?.classList.remove("hidden");
-
-  // add to Recently Opened if you use that pane
-  window.__recentAdd?.(code, title);
-}
-
-
-function setupWelcome(){
-  const input = $("#search-input");
-  const ac = $("#ac-list");
-  const btn = $("#search-go");
-  let currentIndex = -1;
-
-  function getMatches(q){
-    q = q.trim().toLowerCase();
-    if(!q) return [];
-    return pages.filter(p =>
-      p.code.toLowerCase().includes(q) ||
-      p.name.toLowerCase().includes(q)
-    );
-  }
-
-  function render(matches){
-    ac.innerHTML = "";
-    if(matches.length===0){ setHidden(ac,true); return; }
-    matches.forEach((m)=>{
-      const li = document.createElement("li");
-      li.setAttribute("role","option");
-      li.tabIndex = 0;
-      li.innerHTML = `<strong>${m.code}</strong> — ${m.name}`;
-      li.addEventListener("click", ()=>{ input.value = m.code; openSelected(m.code); });
-      li.addEventListener("keydown", (ev)=>{
-        if(ev.key==="Enter"){ input.value = m.code; openSelected(m.code); }
+    card.querySelector('[data-act="demo-search"]').addEventListener("click", () => {
+      const q = card.querySelector('input[type="text"]').value.trim().toLowerCase();
+      const rows = (dataset || []).filter(p =>
+        p.id.toLowerCase().includes(q.replace(/%/g, "")) ||
+        (p.firstName||"").toLowerCase().includes(q.replace(/%/g, "")) ||
+        (p.lastName||"").toLowerCase().includes(q.replace(/%/g, ""))
+      );
+      const tb = card.querySelector("tbody"); tb.innerHTML = "";
+      rows.forEach(p => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${p.id}</td><td>${p.lastName}, ${p.firstName}</td><td>${p.dob || ""}</td><td>${p.admissions?.program || ""}</td>`;
+        tr.addEventListener("click", () => showForm("SPAIDEN", p));
+        tb.appendChild(tr);
       });
-      ac.appendChild(li);
     });
-    setHidden(ac, false);
+
+    return id;
   }
 
-  function openSelected(code){
-    const p = pages.find(x => x.code.toLowerCase() === code.trim().toLowerCase());
-    if(p){ p.open(); setHidden($("#view-welcome"), true); }
+  function openStub(code, blurb = "Demo-only stub page") {
+    const item = pages.find(p => p.code === code);
+    const title = item?.name || "Page";
+    const id = ensureStub(code, title, blurb);
+
+    ["view-welcome","recent-panel","view-keyblock","view-form","view-swingenq","view-saaadms","view-roster"]
+      .forEach(v => document.getElementById(v)?.classList.add("hidden"));
+    document.getElementById(id)?.classList.remove("hidden");
+    window.__recentAdd?.(code, title);
   }
 
-  input.addEventListener("input", ()=>render(getMatches(input.value)));
-  input.addEventListener("keydown", (ev)=>{
-    const items = $$("#ac-list li");
-    if(ev.key==="ArrowDown"){
-      ev.preventDefault();
-      currentIndex = Math.min(items.length-1, currentIndex+1);
-      if(items[currentIndex]) items[currentIndex].focus();
-    } else if(ev.key==="Enter"){
-      openSelected(input.value);
+  function setupWelcome(){
+    const input = $("#search-input");
+    const ac = $("#ac-list");
+    const btn = $("#search-go");
+    let currentIndex = -1;
+
+    function getMatches(q){
+      q = q.trim().toLowerCase();
+      if(!q) return [];
+      return pages.filter(p =>
+        p.code.toLowerCase().includes(q) ||
+        p.name.toLowerCase().includes(q)
+      );
     }
-  });
-  btn.addEventListener("click", ()=>openSelected(input.value));
 
-  $("#tab-search").addEventListener("click", ()=>{
-    $("#tab-search").classList.add("active");
-    $("#tab-direct").classList.remove("active");
-    input.placeholder="Pages, Menus, Jobs and Quickflows";
-  });
-  $("#tab-direct").addEventListener("click", ()=>{
-    $("#tab-direct").classList.add("active");
-    $("#tab-search").classList.remove("active");
-    input.placeholder="Enter page acronym e.g., SWADDER";
-    input.focus();
-  });
-
-  // ---- Dynamic “Try typing …” hint (add AFTER listeners) ----
-  function oxfordJoin(arr) {
-    if (arr.length <= 2) return arr.join(" or ");
-    return arr.slice(0, -1).join(", ") + ", or " + arr[arr.length - 1];
-  }
-  const maxExamples = 14; // tweak as you like
-  const examples = pages.slice(0, maxExamples).map(p => `<strong>${p.code}</strong>`);
-  const hint =
-    document.getElementById("type-hint") ||
-    document.querySelector("#view-welcome .small"); // fallback if you didn't add an id
-  if (hint) {
-    hint.innerHTML = `Try typing ${oxfordJoin(examples)}${pages.length > maxExamples ? ", …" : ""}.`;
-  }
-}
-
-
-    }
     function render(matches){
       ac.innerHTML = "";
       if(matches.length===0){ setHidden(ac,true); return; }
@@ -346,10 +273,12 @@ function setupWelcome(){
       });
       setHidden(ac, false);
     }
+
     function openSelected(code){
       const p = pages.find(x => x.code.toLowerCase() === code.trim().toLowerCase());
       if(p){ p.open(); setHidden($("#view-welcome"), true); }
     }
+
     input.addEventListener("input", ()=>render(getMatches(input.value)));
     input.addEventListener("keydown", (ev)=>{
       const items = $$("#ac-list li");
@@ -362,6 +291,7 @@ function setupWelcome(){
       }
     });
     btn.addEventListener("click", ()=>openSelected(input.value));
+
     $("#tab-search").addEventListener("click", ()=>{
       $("#tab-search").classList.add("active");
       $("#tab-direct").classList.remove("active");
@@ -390,7 +320,6 @@ function setupWelcome(){
   }
 
   // ====== KEY BLOCK =========================================================
-
   function showKeyBlock(formCode){
     currentForm = formCode;
     setHidden($("#view-welcome"), true);
@@ -401,20 +330,15 @@ function setupWelcome(){
     setHidden($("#view-roster"), true);
     setHidden($("#view-keyblock"), false);
 
-    // reset errors + base fields
     $("#kb-id").value = "";
     $("#kb-error").textContent = ""; setHidden($("#kb-error"), true);
 
-    // dynamic extras
     const ex = $("#kb-extra"); ex.innerHTML = "";
     const idWrap = $("#kb-id-wrap");
 
-    // default hint
     $("#kb-hint").innerHTML = `Enter the required fields, then press <strong>Go</strong> (or Enter).`;
 
-    // Build per-form requirements
     if (formCode === "SFASLST") {
-      // Term + CRN required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -426,7 +350,6 @@ function setupWelcome(){
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>CRN</strong>, then Go.`;
 
     } else if (formCode === "SWIGENQ") {
-      // ID + Term required
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -435,7 +358,6 @@ function setupWelcome(){
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>, then Go.`;
 
     } else if (formCode === "SAAADMS" || formCode === "SAASUMI") {
-      // ID required, Term optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term (optional)
@@ -444,7 +366,6 @@ function setupWelcome(){
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> (and optional Term), then Go.`;
 
     } else if (formCode === "SGASTDQ" || formCode === "SHACRSE" || formCode === "SFASTCA") {
-      // ID + Term required; SFASTCA CRN optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -458,7 +379,6 @@ function setupWelcome(){
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>${formCode==="SFASTCA"?" (CRN optional)":""}, then Go.`;
 
     } else if (formCode === "SWASLST") {
-      // Term + Subject required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -470,13 +390,11 @@ function setupWelcome(){
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>Subject</strong>, then Go.`;
 
     } else if (formCode === "GUASYST" || formCode === "SHADGMQ" || formCode === "SWATRAC") {
-      // ID only
       idWrap.style.display = "";
       ex.innerHTML = ``;
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go.`;
 
     } else {
-      // SWADDER / SPAIDEN default: ID only
       idWrap.style.display = "";
       ex.innerHTML = "";
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go. Example: <code>T00031879</code>`;
@@ -619,7 +537,6 @@ function setupWelcome(){
 
     $("#kb-go").addEventListener("click", go);
 
-    // Press Enter on any KB input to Go (delegated)
     $("#view-keyblock").addEventListener("keydown", (ev)=>{
       const t = ev.target;
       if (ev.key === "Enter" && (t.matches("#kb-id") || t.matches("#kb-term") || t.matches("#kb-crn") || t.matches("#kb-subject"))) {
@@ -632,7 +549,6 @@ function setupWelcome(){
   }
 
   // ====== CORE FORMS (existing) =============================================
-
   function showForm(formCode, person){
     setHidden($("#view-keyblock"), true);
     setHidden($("#view-swingenq"), true);
@@ -711,7 +627,6 @@ function setupWelcome(){
       tr.addEventListener("click", ()=> showForm("SPAIDEN", person));
       tb.appendChild(tr);
     });
-    // (Re)bind start button in case view was recreated earlier
     $("#roster-start")?.addEventListener("click", startOver, {once:true});
   }
 
@@ -772,7 +687,6 @@ function setupWelcome(){
   }
 
   // ====== NEW STUB PAGES ====================================================
-
   function showGUASYST(p){
     const fp = p.footprint || {};
     const row = (label,val)=>`<tr><td>${label}</td><td>${val? "✔︎" : "—"}</td></tr>`;
@@ -897,7 +811,6 @@ function setupWelcome(){
     const T = normalizeTerm(term);
     const SUBJ = (subject||"").toUpperCase();
 
-    // Build unique sections in this term+subject
     const map = new Map(); // crn -> {sec, count}
     dataset.forEach(p=>{
       (p.schedule||[]).forEach(s=>{
@@ -925,7 +838,6 @@ function setupWelcome(){
       `
     );
 
-    // Row click → roster
     $("#swalst-table tbody")?.addEventListener("click", (ev)=>{
       const tr = ev.target.closest("tr[data-crn]");
       if (!tr) return;
@@ -1000,7 +912,6 @@ function setupWelcome(){
   }
 
   // ====== INIT ===============================================================
-
   document.addEventListener("DOMContentLoaded", async ()=>{
     ensureContainers();
     await loadData();
@@ -1011,7 +922,6 @@ function setupWelcome(){
   });
 
 })();
-
 
 // ===== sidebar + recently-opened wiring (leave as-is) ========================
 (function(){
