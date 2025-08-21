@@ -251,30 +251,83 @@ function openStub(code, blurb = "Demo-only stub page") {
 }
 
 
-  function setupWelcome(){
-    const input = $("#search-input");
-    const ac = $("#ac-list");
-    const btn = $("#search-go");
-    let currentIndex = -1;
+function setupWelcome(){
+  const input = $("#search-input");
+  const ac = $("#ac-list");
+  const btn = $("#search-go");
+  let currentIndex = -1;
 
-    function getMatches(q){
-      q = q.trim().toLowerCase();
-      if(!q) return [];
-      return pages.filter(p => p.code.toLowerCase().includes(q) || p.name.toLowerCase().includes(q));
+  function getMatches(q){
+    q = q.trim().toLowerCase();
+    if(!q) return [];
+    return pages.filter(p =>
+      p.code.toLowerCase().includes(q) ||
+      p.name.toLowerCase().includes(q)
+    );
+  }
 
-      // Build the “Try typing …” hint dynamically from the pages[] registry
-    function oxfordJoin(arr) {
-      if (arr.length <= 2) return arr.join(" or ");
-      return arr.slice(0, -1).join(", ") + ", or " + arr[arr.length - 1];
+  function render(matches){
+    ac.innerHTML = "";
+    if(matches.length===0){ setHidden(ac,true); return; }
+    matches.forEach((m)=>{
+      const li = document.createElement("li");
+      li.setAttribute("role","option");
+      li.tabIndex = 0;
+      li.innerHTML = `<strong>${m.code}</strong> — ${m.name}`;
+      li.addEventListener("click", ()=>{ input.value = m.code; openSelected(m.code); });
+      li.addEventListener("keydown", (ev)=>{
+        if(ev.key==="Enter"){ input.value = m.code; openSelected(m.code); }
+      });
+      ac.appendChild(li);
+    });
+    setHidden(ac, false);
+  }
+
+  function openSelected(code){
+    const p = pages.find(x => x.code.toLowerCase() === code.trim().toLowerCase());
+    if(p){ p.open(); setHidden($("#view-welcome"), true); }
+  }
+
+  input.addEventListener("input", ()=>render(getMatches(input.value)));
+  input.addEventListener("keydown", (ev)=>{
+    const items = $$("#ac-list li");
+    if(ev.key==="ArrowDown"){
+      ev.preventDefault();
+      currentIndex = Math.min(items.length-1, currentIndex+1);
+      if(items[currentIndex]) items[currentIndex].focus();
+    } else if(ev.key==="Enter"){
+      openSelected(input.value);
     }
-    const maxExamples = 14; // show up to 14 examples; tweak as you like
-    const examples = pages
-      .slice(0, maxExamples)
-      .map(p => `<strong>${p.code}</strong>`);
-    const hint = document.getElementById("type-hint");
-    if (hint) {
-      hint.innerHTML = `Try typing ${oxfordJoin(examples)}${pages.length > maxExamples ? ", …" : ""}.`;
-    }
+  });
+  btn.addEventListener("click", ()=>openSelected(input.value));
+
+  $("#tab-search").addEventListener("click", ()=>{
+    $("#tab-search").classList.add("active");
+    $("#tab-direct").classList.remove("active");
+    input.placeholder="Pages, Menus, Jobs and Quickflows";
+  });
+  $("#tab-direct").addEventListener("click", ()=>{
+    $("#tab-direct").classList.add("active");
+    $("#tab-search").classList.remove("active");
+    input.placeholder="Enter page acronym e.g., SWADDER";
+    input.focus();
+  });
+
+  // ---- Dynamic “Try typing …” hint (add AFTER listeners) ----
+  function oxfordJoin(arr) {
+    if (arr.length <= 2) return arr.join(" or ");
+    return arr.slice(0, -1).join(", ") + ", or " + arr[arr.length - 1];
+  }
+  const maxExamples = 14; // tweak as you like
+  const examples = pages.slice(0, maxExamples).map(p => `<strong>${p.code}</strong>`);
+  const hint =
+    document.getElementById("type-hint") ||
+    document.querySelector("#view-welcome .small"); // fallback if you didn't add an id
+  if (hint) {
+    hint.innerHTML = `Try typing ${oxfordJoin(examples)}${pages.length > maxExamples ? ", …" : ""}.`;
+  }
+}
+
 
     }
     function render(matches){
