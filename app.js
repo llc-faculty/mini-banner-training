@@ -145,23 +145,111 @@
 
   // ====== SEARCH / WELCOME ==================================================
 
-  const pages = [
-    // Existing
-    {code:"SWADDER", name:"Address Information Form", open:()=>showKeyBlock("SWADDER")},
-    {code:"SPAIDEN", name:"General Person Identification", open:()=>showKeyBlock("SPAIDEN")},
-    {code:"SWIGENQ", name:"General Person Query", open:()=>showGQ()},
-    {code:"SAAADMS", name:"Admissions Application", open:()=>showKeyBlock("SAAADMS")},
-    {code:"SFASLST", name:"Student Class Schedule (Roster by Term+CRN)", open:()=>showKeyBlock("SFASLST")},
-    // New stubs
-    {code:"GUASYST", name:"Student Systems Footprint", open:()=>showKeyBlock("GUASYST")},
-    {code:"SAASUMI", name:"Admissions Summary Inquiry", open:()=>showKeyBlock("SAASUMI")},
-    {code:"SGASTDQ", name:"General Student (Quick) — by Term", open:()=>showKeyBlock("SGASTDQ")},
-    {code:"SHACRSE", name:"Course Summary — by Term", open:()=>showKeyBlock("SHACRSE")},
-    {code:"SFASTCA", name:"Registration Audit — by Term/CRN", open:()=>showKeyBlock("SFASTCA")},
-    {code:"SWASLST", name:"Section List — by Term+Subject", open:()=>showKeyBlock("SWASLST")},
-    {code:"SHADGMQ", name:"Degree Summary (Query)", open:()=>showKeyBlock("SHADGMQ")},
-    {code:"SWATRAC", name:"Student Tracking — Steps/Holds/Fees", open:()=>showKeyBlock("SWATRAC")}
-  ];
+// === PAGE REGISTRY ===
+// Anything you add here becomes searchable/openable from the Welcome screen.
+const pages = [
+  // Core pages that show real forms in the mock
+  { code: "SWADDER", name: "Address Information Form", open: () => showKeyBlock("SWADDER") },
+  { code: "SPAIDEN", name: "General Person Identification", open: () => showKeyBlock("SPAIDEN") },
+  { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") }, // now routes to KB to request ID+Term
+  { code: "SAAADMS", name: "Admissions Application", open: () => showKeyBlock("SAAADMS") },
+  { code: "SFASLST", name: "Student Class Schedule (Roster)", open: () => showKeyBlock("SFASLST") },
+
+  // New “Enquiry & Reporting” pages – stub cards (clickable UI, no data writes)
+  { code: "SOAIDEN", name: "Person Search", open: () => openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%") },
+  { code: "GUIALTI", name: "Alternate ID Search", open: () => openStub("GUIALTI", "Search by alternate IDs (e.g., SSN/SIN/TIN) and names") },
+  { code: "SOAIDNS", name: "Person Search Detail", open: () => openStub("SOAIDNS", "Dense person summary; collapse/expand sections; refine then select") },
+
+  // Small admin/reporting examples
+  { code: "GUASYST", name: "System Control Maintenance", open: () => showKeyBlock("GUASYST") },
+
+  { code: "SAASUMI", name: "Applicant Summary", open: () => openStub("SAASUMI", "One-stop applicant summary view") },
+  { code: "SWASLST", name: "Section List", open: () => showKeyBlock("SWASLST") },
+  { code: "SGASTDQ", name: "General Student Quick", open: () => showKeyBlock("SGASTDQ") },
+  { code: "SHACRSE", name: "Course Summary", open: () => showKeyBlock("SHACRSE") },
+  { code: "SFASTCA", name: "Registration Audit", open: () => showKeyBlock("SFASTCA") },
+  { code: "SHADGMQ", name: "Degree Summary", open: () => showKeyBlock("SHADGMQ") },
+  { code: "SWATRAC", name: "Tracking (Reg/Fees/Holds)", open: () => showKeyBlock("SWATRAC") },
+
+
+  // You can add more here later…
+];
+
+// helpful for debugging in the browser console:
+window.pages = pages;
+// === STUB PAGE HELPERS ===
+function ensureStub(code, title, blurb) {
+  const id = `stub-${code}`;
+  if (document.getElementById(id)) return id;
+
+  const host = document.querySelector(".container");
+  const card = document.createElement("section");
+  card.id = id;
+  card.className = "card hidden";
+  card.setAttribute("role", "region");
+  card.innerHTML = `
+    <h2 style="margin-top:0">${code} — ${title}</h2>
+    <p class="small" style="margin-bottom:.75rem">${blurb}</p>
+    <div class="section">
+      <div class="grid">
+        <label>Quick search<input type="text" placeholder="Try %SMI% or T0003…" aria-label="Stub search"></label>
+        <button class="btn" data-act="demo-search">Execute Query</button>
+        <button class="btn" data-act="open-spaiden">Open SPAIDEN</button>
+        <button class="btn" data-act="start-over">Start Over</button>
+      </div>
+    </div>
+    <div class="section">
+      <table class="table">
+        <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Program</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  `;
+  host.appendChild(card);
+
+  // wire buttons
+  card.querySelector('[data-act="start-over"]').addEventListener("click", startOver);
+  card.querySelector('[data-act="open-spaiden"]').addEventListener("click", () => {
+    // Open SPAIDEN with the first listed match if any; else fall back to key block
+    const firstId = card.querySelector("tbody tr td")?.textContent?.trim();
+    if (firstId) {
+      const p = findById(firstId);
+      if (p) return showForm("SPAIDEN", p);
+    }
+    showKeyBlock("SPAIDEN");
+  });
+  card.querySelector('[data-act="demo-search"]').addEventListener("click", () => {
+    const q = card.querySelector('input[type="text"]').value.trim().toLowerCase();
+    const rows = (dataset || []).filter(p =>
+      p.id.toLowerCase().includes(q.replace(/%/g, "")) ||
+      p.firstName.toLowerCase().includes(q.replace(/%/g, "")) ||
+      p.lastName.toLowerCase().includes(q.replace(/%/g, ""))
+    );
+    const tb = card.querySelector("tbody"); tb.innerHTML = "";
+    rows.forEach(p => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${p.id}</td><td>${p.lastName}, ${p.firstName}</td><td>${p.dob || ""}</td><td>${p.admissions?.program || ""}</td>`;
+      tr.addEventListener("click", () => showForm("SPAIDEN", p));
+      tb.appendChild(tr);
+    });
+  });
+
+  return id;
+}
+function openStub(code, blurb = "Demo-only stub page") {
+  const item = pages.find(p => p.code === code);
+  const title = item?.name || "Page";
+  const id = ensureStub(code, title, blurb);
+
+  // hide all views, then show stub
+  ["view-welcome","recent-panel","view-keyblock","view-form","view-swingenq","view-saaadms","view-roster"]
+    .forEach(v => document.getElementById(v)?.classList.add("hidden"));
+  document.getElementById(id)?.classList.remove("hidden");
+
+  // add to Recently Opened if you use that pane
+  window.__recentAdd?.(code, title);
+}
+
 
   function setupWelcome(){
     const input = $("#search-input");
@@ -380,7 +468,7 @@
           normalizeTerm(person.admissions?.term || DEFAULT_TERM) === term ||
           (person.admissionsHistory||[]).some(h => normalizeTerm(h.term) === term) ||
           (person.schedule||[]).some(s => normalizeTerm(s.term||DEFAULT_TERM) === term);
-        if (!hasTerm) return fail("This person has no data for that Term (demo data). Try 2025/26).");
+        if (!hasTerm) return fail("This person has no data for that Term (demo data). Try 2025/26.");
         showForm("SPAIDEN", person);
         recentAdd("SWIGENQ", `Query ${id} @ ${term}`);
         return;
