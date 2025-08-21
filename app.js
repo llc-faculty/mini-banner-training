@@ -261,6 +261,21 @@ function openStub(code, blurb = "Demo-only stub page") {
       q = q.trim().toLowerCase();
       if(!q) return [];
       return pages.filter(p => p.code.toLowerCase().includes(q) || p.name.toLowerCase().includes(q));
+
+      // Build the “Try typing …” hint dynamically from the pages[] registry
+    function oxfordJoin(arr) {
+      if (arr.length <= 2) return arr.join(" or ");
+      return arr.slice(0, -1).join(", ") + ", or " + arr[arr.length - 1];
+    }
+    const maxExamples = 14; // show up to 14 examples; tweak as you like
+    const examples = pages
+      .slice(0, maxExamples)
+      .map(p => `<strong>${p.code}</strong>`);
+    const hint = document.getElementById("type-hint");
+    if (hint) {
+      hint.innerHTML = `Try typing ${oxfordJoin(examples)}${pages.length > maxExamples ? ", …" : ""}.`;
+    }
+
     }
     function render(matches){
       ac.innerHTML = "";
