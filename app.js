@@ -590,6 +590,56 @@
     }
 
     $("#kb-cancel").addEventListener("click", startOver);
+    // Options menu ("..." button) inside Key Block
+    const kbOptions = document.getElementById("kb-options");
+    const kbMenu = document.getElementById("kb-menu");
+    const kbWrap = document.querySelector("#view-keyblock .keyblock");
+
+    if (kbOptions && kbMenu && kbWrap) {
+      // Ensure the keyblock is the positioning context
+      kbWrap.style.position = kbWrap.style.position || "relative";
+
+      const placeMenu = () => {
+        const br = kbOptions.getBoundingClientRect();
+        const cr = kbWrap.getBoundingClientRect();
+        kbMenu.style.left = Math.max(0, br.left - cr.left) + "px";
+        kbMenu.style.top  = (br.bottom - cr.top + 4) + "px";
+      };
+
+      kbOptions.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const open = kbOptions.getAttribute("aria-expanded") === "true";
+        if (open) {
+          kbMenu.classList.add("hidden");
+          kbOptions.setAttribute("aria-expanded", "false");
+        } else {
+          placeMenu();
+          kbMenu.classList.remove("hidden");
+          kbOptions.setAttribute("aria-expanded", "true");
+        }
+      });
+
+      // Click-away to close
+      document.addEventListener("click", (ev) => {
+        if (!kbMenu.classList.contains("hidden") &&
+            !ev.target.closest("#kb-menu") &&
+            !ev.target.closest("#kb-options")) {
+          kbMenu.classList.add("hidden");
+          kbOptions.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Menu actions
+      kbMenu.querySelectorAll("[role='menuitem']").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const code = btn.getAttribute("data-open");
+          if (code) openStub(code, "Demo search page");
+          kbMenu.classList.add("hidden");
+          kbOptions.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
   }
 
   // ====== CORE FORMS ========================================================
