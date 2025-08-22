@@ -15,7 +15,7 @@
     setTimeout(()=>t.classList.remove("show"), 1600);
   };
 
-  // NEW: hide all dynamically-created stub pages
+  // Hide all dynamically-created stub pages (e.g., stub-SOAIDEN)
   function hideAllStubs(){
     document.querySelectorAll('[id^="stub-"]').forEach(el => el.classList.add('hidden'));
   }
@@ -154,6 +154,7 @@
 
   // === PAGE REGISTRY ===
   const pages = [
+    // Core pages that show real forms in the mock
     { code: "SWADDER", name: "Address Information Form", open: () => showKeyBlock("SWADDER") },
     { code: "SPAIDEN", name: "General Person Identification", open: () => showKeyBlock("SPAIDEN") },
     { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") },
@@ -207,8 +208,10 @@
     `;
     host.appendChild(card);
 
+    // wire buttons
     card.querySelector('[data-act="start-over"]').addEventListener("click", startOver);
     card.querySelector('[data-act="open-spaiden"]').addEventListener("click", () => {
+      // Open SPAIDEN with the first listed match if any; else fall back to key block
       const firstId = card.querySelector("tbody tr td")?.textContent?.trim();
       if (firstId) {
         const p = findById(firstId);
@@ -240,7 +243,7 @@
     const title = item?.name || "Page";
     const id = ensureStub(code, title, blurb);
 
-    // NEW: always hide any other stub sections before showing this one
+    // always hide any other stub sections before showing this one
     hideAllStubs();
 
     // hide fixed views, then show this stub
@@ -322,7 +325,7 @@
     setHidden($("#view-roster"), true);
     setHidden($("#view-stub"), true);
 
-    // NEW: also hide all dynamic stub cards
+    // also hide all dynamic stub cards
     hideAllStubs();
 
     setHidden($("#view-welcome"), false);
@@ -333,6 +336,7 @@
   }
 
   // ====== KEY BLOCK =========================================================
+
   function showKeyBlock(formCode){
     currentForm = formCode;
 
@@ -360,6 +364,7 @@
 
     // Build per-form requirements
     if (formCode === "SFASLST") {
+      // Term + CRN required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -371,6 +376,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>CRN</strong>, then Go.`;
 
     } else if (formCode === "SWIGENQ") {
+      // ID + Term required
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -379,6 +385,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>, then Go.`;
 
     } else if (formCode === "SAAADMS" || formCode === "SAASUMI") {
+      // ID required, Term optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term (optional)
@@ -387,6 +394,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> (and optional Term), then Go.`;
 
     } else if (formCode === "SGASTDQ" || formCode === "SHACRSE" || formCode === "SFASTCA") {
+      // ID + Term required; SFASTCA CRN optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -400,6 +408,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>${formCode==="SFASTCA"?" (CRN optional)":""}, then Go.`;
 
     } else if (formCode === "SWASLST") {
+      // Term + Subject required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -411,11 +420,13 @@
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>Subject</strong>, then Go.`;
 
     } else if (formCode === "GUASYST" || formCode === "SHADGMQ" || formCode === "SWATRAC") {
+      // ID only
       idWrap.style.display = "";
       ex.innerHTML = ``;
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go.`;
 
     } else {
+      // SWADDER / SPAIDEN default: ID only
       idWrap.style.display = "";
       ex.innerHTML = "";
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go. Example: <code>T00031879</code>`;
@@ -433,17 +444,6 @@
     function fail(msg){
       $("#kb-error").textContent = msg;
       setHidden($("#kb-error"), false);
-    }
-
-      // --- NEW: Tab in empty ID opens SOAIDEN ---
-    const kbId = document.getElementById("kb-id");
-    if (kbId) {
-      kbId.addEventListener("keydown", (ev) => {
-        if (ev.key === "Tab" && !ev.shiftKey && !kbId.value.trim()) {
-          ev.preventDefault();
-          openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%");
-        }
-      });
     }
 
     function go(){
@@ -577,6 +577,17 @@
         go();
       }
     });
+
+    // Optional: Tab from a blank ID opens SOAIDEN
+    const kbId = document.getElementById("kb-id");
+    if (kbId) {
+      kbId.addEventListener("keydown", (ev)=>{
+        if (ev.key === "Tab" && !ev.shiftKey && !kbId.value.trim()) {
+          ev.preventDefault();
+          openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%");
+        }
+      });
+    }
 
     $("#kb-cancel").addEventListener("click", startOver);
   }
@@ -775,9 +786,11 @@
         <table class="table">
           <thead><tr><th>Term</th><th>Programme</th><th>Status</th><th>Decision</th></tr></thead>
           <tbody>
-            ${[p.admissions, ...(p.admissionsHistory||[])].map(x=>`
-              <tr><td>${normalizeTerm(x.term)}</td><td>${x.program||""}</td><td>${x.status||""}</td><td>${x.decision||""}</td></tr>
-            `).join("")}
+            ${[p.admissions, ...(p.admissionsHistory || [])]
+              .filter(Boolean)
+              .map(x=>`
+                <tr><td>${normalizeTerm(x.term)}</td><td>${x.program||""}</td><td>${x.status||""}</td><td>${x.decision||""}</td></tr>
+              `).join("")}
           </tbody>
         </table>
       ` : `<p>No admissions record found for ${T || "(no term provided)"} in demo data.</p>`
@@ -857,6 +870,7 @@
     const T = normalizeTerm(term);
     const SUBJ = (subject||"").toUpperCase();
 
+    // Build unique sections in this term+subject
     const map = new Map(); // crn -> {sec, count}
     dataset.forEach(p=>{
       (p.schedule||[]).forEach(s=>{
@@ -884,6 +898,7 @@
       `
     );
 
+    // Row click → roster
     $("#swalst-table tbody")?.addEventListener("click", (ev)=>{
       const tr = ev.target.closest("tr[data-crn]");
       if (!tr) return;
@@ -894,7 +909,63 @@
     });
   }
 
-  // ====== CHROME BUTTONS ====================================================
+  function showSHADGMQ(p){
+    const deg = p.degree||[];
+    showStub(
+      `SHADGMQ — Degree Summary (${p.id})`,
+      deg.length ? `
+        <table class="table">
+          <thead><tr><th>Program</th><th>Catalog</th><th>Status</th><th>Expected Grad</th></tr></thead>
+          <tbody>
+            ${deg.map(d=>`
+              <tr><td>${d.program||""}</td><td>${d.catalog||""}</td><td>${d.status||""}</td><td>${d.expectedGrad||""}</td></tr>
+            `).join("")}
+          </tbody>
+        </table>
+      ` : `<p>No degree records in demo data for ${p.id}.</p>`
+    );
+  }
+
+  function showSWATRAC(p){
+    const reg = p.registration || {};
+    const holds = reg.holds || [];
+    const steps = reg.steps || [];
+    const fees  = reg.fees || {};
+
+    showStub(
+      `SWATRAC — Tracking (${p.id})`,
+      `
+      <div class="grid" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;max-width:1000px">
+        <div>
+          <h3>Registration</h3>
+          <p><strong>Status:</strong> ${reg.status||"—"}</p>
+          <p><strong>Term:</strong> ${normalizeTerm(reg.term||"")}</p>
+        </div>
+        <div>
+          <h3>Fees</h3>
+          <p><strong>Tuition:</strong> ${fees.tuition!=null ? `£${fees.tuition}`:"—"}</p>
+          <p><strong>Overdue:</strong> ${fees.overdue!=null ? `£${fees.overdue}`:"—"}</p>
+        </div>
+        <div>
+          <h3>Holds</h3>
+          ${holds.length ? `<ul>${holds.map(h=>`<li>${h.type||"Hold"} — ${h.note||""}</li>`).join("")}</ul>` : `<p>None</p>`}
+        </div>
+      </div>
+
+      <h3 style="margin-top:1rem">Steps</h3>
+      <table class="table">
+        <thead><tr><th>Step</th><th>Confirmed At</th></tr></thead>
+        <tbody>
+          ${steps.length ? steps.map(s=>`
+            <tr><td>${s.name}</td><td>${s.confirmedAt ? new Date(s.confirmedAt).toLocaleString(): "—"}</td></tr>
+          `).join("") : `<tr><td colspan="2">No steps recorded.</td></tr>`}
+        </tbody>
+      </table>
+      `
+    );
+  }
+
+  // ====== CHROME BUTTONS (existing) =========================================
   function bindChrome(){
     $("#btn-start")?.addEventListener("click", startOver);
     $("#btn-save")?.addEventListener("click", ()=>toast("Saved (demo only)"));
@@ -902,6 +973,7 @@
   }
 
   // ====== INIT ===============================================================
+
   document.addEventListener("DOMContentLoaded", async ()=>{
     ensureContainers();
     await loadData();
@@ -933,6 +1005,7 @@
     const list = document.getElementById('recent-list');
     if (list){ list.innerHTML = recent.map(r => `<li><strong>${r.title}</strong> (${r.code})</li>`).join(''); }
   }
+  // expose
   window.__recentAdd = recentAdd;
 
   document.getElementById('icon-home')?.addEventListener('click', e => {
