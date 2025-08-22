@@ -435,6 +435,17 @@
       setHidden($("#kb-error"), false);
     }
 
+      // --- NEW: Tab in empty ID opens SOAIDEN ---
+    const kbId = document.getElementById("kb-id");
+    if (kbId) {
+      kbId.addEventListener("keydown", (ev) => {
+        if (ev.key === "Tab" && !ev.shiftKey && !kbId.value.trim()) {
+          ev.preventDefault();
+          openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%");
+        }
+      });
+    }
+
     function go(){
       const id   = $("#kb-id")?.value.trim();
       const term = normalizeTerm($("#kb-term")?.value || "");
