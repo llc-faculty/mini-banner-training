@@ -312,3 +312,10 @@ body{ background: var(--bg); color: var(--ink); }
 }
 .menu [role="menuitem"]:hover { background: #f1f5f9; }
 
+
+
+
+/* --- Key Block dropdown positioning fix --- */
+.keyblock{ position: relative; }
+.keyblock .icon-btn{ align-self: center; }
+.keyblock .menu{ right: 0; } /* fallback placement */
