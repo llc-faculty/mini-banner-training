@@ -277,3 +277,38 @@ body{ background: var(--bg); color: var(--ink); }
 .sidebar--compact .nav-icon:focus-visible{
   outline:2px solid #fff; outline-offset:2px;
 }
+
+.icon-btn {
+  margin-left: .5rem;
+  padding: 0 .5rem;
+  border: 1px solid var(--border, #e3e8ef);
+  background: var(--surface, #fff);
+  border-radius: 6px;
+  font-weight: 700;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  margin-top: .25rem;
+  padding: .25rem;
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  display: grid;
+  gap: .25rem;
+  z-index: 20;
+}
+.menu.hidden { display: none; }
+.menu [role="menuitem"] {
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: .35rem .5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu [role="menuitem"]:hover { background: #f1f5f9; }
+
