@@ -76,21 +76,34 @@
     <div class="main-area">
       <div class="container">
 
-        <!-- Welcome / Search -->
-        <div id="view-welcome" class="card">
-          <h1 style="margin-top:0">Welcome</h1>
-          <div class="tabbar" role="tablist" aria-label="Search mode">
-            <button id="tab-search" class="active" role="tab" aria-selected="true">Search</button>
-            <button id="tab-direct" role="tab" aria-selected="false">Direct Navigation</button>
-          </div>
-          <div class="searchbar">
-            <input id="search-input" type="text" placeholder="Pages, Menus, Jobs and Quickflows" aria-label="Search for Banner pages by acronym or name">
-            <button id="search-go" class="go" aria-label="Open selected page">Open</button>
-          </div>
-          <ul id="ac-list" class="autocomplete hidden" role="listbox" aria-label="Search results"></ul>
-          <p class="small">
-          Try typing <strong>SWADDER</strong>, <strong>SPAIDEN</strong>, <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, <strong>SFASLST</strong>, <strong>SOAIDEN</strong>, <strong>GUIALTI</strong>, <strong>SOAIDNS</strong>, <strong>GUASYST</strong>, <strong>SAASUMI</strong>, <strong>SWASLST</strong>, <strong>SGASTDQ</strong>, <strong>SHACRSE</strong>, <strong>SFASTCA</strong>, <strong>SHADGMQ</strong>, or <strong>SWATRAC</strong>.
-          </p>
+    <!-- Welcome / Search -->
+    <div id="view-welcome" class="card">
+      <h1 style="margin-top:0">Welcome</h1>
+
+      <div class="tabbar" role="tablist" aria-label="Search mode">
+        <button id="tab-search" class="active" role="tab" aria-selected="true">Search</button>
+        <button id="tab-direct" role="tab" aria-selected="false">Direct Navigation</button>
+      </div>
+
+      <div class="searchbar">
+        <input id="search-input" type="text" placeholder="Pages, Menus, Jobs and Quickflows" aria-label="Search for Banner pages by acronym or name">
+        <button id="search-go" class="go" aria-label="Open selected page">Open</button>
+      </div>
+
+      <ul id="ac-list" class="autocomplete hidden" role="listbox" aria-label="Search results"></ul>
+
+      <!-- static hint (safe, valid HTML) -->
+      <p class="small" id="type-hint">
+        Try typing
+        <strong>SWADDER</strong>, <strong>SPAIDEN</strong>,
+        <strong>SWIGENQ</strong>, <strong>SAAADMS</strong>, <strong>SFASLST</strong>,
+        <strong>SOAIDEN</strong>, <strong>GUIALTI</strong>, <strong>SOAIDNS</strong>,
+        <strong>GUASYST</strong>, <strong>SAASUMI</strong>, <strong>SWASLST</strong>,
+        <strong>SGASTDQ</strong>, <strong>SHACRSE</strong>, <strong>SFASTCA</strong>,
+        <strong>SHADGMQ</strong>, or <strong>SWATRAC</strong>.
+      </p>
+    </div>
+
 
 
         <!-- Key Block -->
@@ -249,7 +262,7 @@
     </div>
   </div>
 
-  <script src="app.js?v=20250821f"></script>
+  <script src="app.js?v=20250821g"></script>
 
 
 </body>
