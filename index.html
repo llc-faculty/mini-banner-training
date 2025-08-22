@@ -107,7 +107,7 @@
 
 
 <!-- Key Block -->
-<div id="view-keyblock" class="card hidden" aria-live="polite">
+<section id="view-keyblock" class="card hidden" aria-live="polite">
   <h2 style="margin-top:0">Key Block</h2>
   <p class="small" id="kb-hint">
     Enter the required fields, then press <strong>Go</strong> (or Enter).
@@ -129,28 +129,17 @@
 
     <button id="kb-go" class="btn">Go</button>
     <button id="kb-cancel" class="btn">Start Over</button>
+
+    <!-- Option List (the “...” menu) -->
+    <button id="kb-options" class="icon-btn" aria-haspopup="menu" aria-expanded="false" title="Options">…</button>
+    <div id="kb-menu" class="menu hidden" role="menu" aria-label="Options">
+      <button role="menuitem" data-open="SOAIDEN">Person Search</button>
+      <button role="menuitem" data-open="GUIALTI">Alternate ID Search</button>
+    </div>
   </div>
 
   <div id="kb-error" class="error hidden" role="alert"></div>
-</div>
-
-
-  <!-- NEW: Option List (the “...” menu) -->
-  <button id="kb-options" class="icon-btn" aria-haspopup="menu" aria-expanded="false" title="Options">…</button>
-  <div id="kb-menu" class="menu hidden" role="menu" aria-label="Options">
-    <button role="menuitem" data-open="SOAIDEN">Person Search</button>
-    <button role="menuitem" data-open="GUIALTI">Alternate ID Search</button>
-  </div>
-
-  <!-- dynamic extra fields land here (Term, CRN, etc.) -->
-  <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
-
-  <button id="kb-go" class="btn">Go</button>
-  <button id="kb-cancel" class="btn">Start Over</button>
-</div>
-
-
-        <!-- Generic Form Shell (SWADDER/SPAIDEN/SFASLST) -->
+</section><!-- Generic Form Shell (SWADDER/SPAIDEN/SFASLST) -->
         <div id="view-form" class="hidden">
           <div class="toolbar">
             <div class="title" id="form-title">Form</div>
