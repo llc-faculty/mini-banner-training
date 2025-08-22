@@ -112,9 +112,23 @@
           <p class="small" id="kb-hint">Enter the required fields, then press <strong>Go</strong> (or Enter).</p>
 
           <div class="keyblock">
-            <label id="kb-id-wrap">ID
-              <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
-            </label>
+  <label id="kb-id-wrap">ID
+    <input id="kb-id" type="text" inputmode="text" aria-describedby="kb-hint" placeholder="T00031879">
+  </label>
+
+  <!-- NEW: Option List (the “...” menu) -->
+  <button id="kb-options" class="icon-btn" aria-haspopup="menu" aria-expanded="false" title="Options">…</button>
+  <div id="kb-menu" class="menu hidden" role="menu" aria-label="Options">
+    <button role="menuitem" data-open="SOAIDEN">Person Search</button>
+    <button role="menuitem" data-open="GUIALTI">Alternate ID Search</button>
+  </div>
+
+  <!-- dynamic extra fields land here (Term, CRN, etc.) -->
+  <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
+
+  <button id="kb-go" class="btn">Go</button>
+  <button id="kb-cancel" class="btn">Start Over</button>
+</div>
 
             <!-- dynamic extra fields land here (Term, CRN, etc.) -->
             <div id="kb-extra" class="kb-extra" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
