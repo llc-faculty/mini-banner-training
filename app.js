@@ -145,20 +145,22 @@
 
   // ====== SEARCH / WELCOME ==================================================
 
+  // === PAGE REGISTRY ===
   // Anything you add here becomes searchable/openable from the Welcome screen.
   const pages = [
-    // Core pages that show real forms in the mock
+    // Core forms in the mock
     { code: "SWADDER", name: "Address Information Form", open: () => showKeyBlock("SWADDER") },
     { code: "SPAIDEN", name: "General Person Identification", open: () => showKeyBlock("SPAIDEN") },
-    { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") }, // ID + Term
+    { code: "SWIGENQ", name: "General Person Query", open: () => showKeyBlock("SWIGENQ") }, // opens KB (ID+Term)
     { code: "SAAADMS", name: "Admissions Application", open: () => showKeyBlock("SAAADMS") },
     { code: "SFASLST", name: "Student Class Schedule (Roster)", open: () => showKeyBlock("SFASLST") },
 
-    // Enquiry & Reporting — stubs or KB-driven
-    { code: "SOAIDEN", name: "Person Search", open: () => openStub("SOAIDEN", "Search across ID/Name; wildcards like %SMI%") },
-    { code: "GUIALTI", name: "Alternate ID Search", open: () => openStub("GUIALTI", "Search by alternate IDs and names") },
-    { code: "SOAIDNS", name: "Person Search Detail", open: () => openStub("SOAIDNS", "Dense person summary; refine then select") },
+    // Enquiry & reporting stubs / extras
+    { code: "SOAIDEN", name: "Person Search", open: () => openStub("SOAIDEN", "Search for people across ID/Name; use wildcards like %SMI%") },
+    { code: "GUIALTI", name: "Alternate ID Search", open: () => openStub("GUIALTI", "Search by alternate IDs (e.g., SSN/SIN/TIN) and names") },
+    { code: "SOAIDNS", name: "Person Search Detail", open: () => openStub("SOAIDNS", "Dense person summary; collapse/expand sections; refine then select") },
 
+    // Admin/reporting examples
     { code: "GUASYST", name: "System Control Maintenance", open: () => showKeyBlock("GUASYST") },
     { code: "SAASUMI", name: "Applicant Summary", open: () => showKeyBlock("SAASUMI") },
     { code: "SWASLST", name: "Section List", open: () => showKeyBlock("SWASLST") },
@@ -169,7 +171,7 @@
     { code: "SWATRAC", name: "Tracking (Reg/Fees/Holds)", open: () => showKeyBlock("SWATRAC") },
   ];
 
-  // helpful for debugging in the browser console:
+  // helpful in console:
   window.pages = pages;
 
   // === STUB PAGE HELPERS ===
@@ -216,8 +218,8 @@
       const q = card.querySelector('input[type="text"]').value.trim().toLowerCase();
       const rows = (dataset || []).filter(p =>
         p.id.toLowerCase().includes(q.replace(/%/g, "")) ||
-        (p.firstName||"").toLowerCase().includes(q.replace(/%/g, "")) ||
-        (p.lastName||"").toLowerCase().includes(q.replace(/%/g, ""))
+        p.firstName.toLowerCase().includes(q.replace(/%/g, "")) ||
+        p.lastName.toLowerCase().includes(q.replace(/%/g, ""))
       );
       const tb = card.querySelector("tbody"); tb.innerHTML = "";
       rows.forEach(p => {
@@ -236,9 +238,12 @@
     const title = item?.name || "Page";
     const id = ensureStub(code, title, blurb);
 
+    // hide all views, then show stub
     ["view-welcome","recent-panel","view-keyblock","view-form","view-swingenq","view-saaadms","view-roster"]
       .forEach(v => document.getElementById(v)?.classList.add("hidden"));
     document.getElementById(id)?.classList.remove("hidden");
+
+    // add to Recently Opened
     window.__recentAdd?.(code, title);
   }
 
@@ -320,6 +325,7 @@
   }
 
   // ====== KEY BLOCK =========================================================
+
   function showKeyBlock(formCode){
     currentForm = formCode;
     setHidden($("#view-welcome"), true);
@@ -330,15 +336,20 @@
     setHidden($("#view-roster"), true);
     setHidden($("#view-keyblock"), false);
 
+    // reset errors + base fields
     $("#kb-id").value = "";
     $("#kb-error").textContent = ""; setHidden($("#kb-error"), true);
 
+    // dynamic extras
     const ex = $("#kb-extra"); ex.innerHTML = "";
     const idWrap = $("#kb-id-wrap");
 
+    // default hint
     $("#kb-hint").innerHTML = `Enter the required fields, then press <strong>Go</strong> (or Enter).`;
 
+    // Build per-form requirements
     if (formCode === "SFASLST") {
+      // Term + CRN required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -350,6 +361,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>CRN</strong>, then Go.`;
 
     } else if (formCode === "SWIGENQ") {
+      // ID + Term required
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -358,6 +370,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>, then Go.`;
 
     } else if (formCode === "SAAADMS" || formCode === "SAASUMI") {
+      // ID required, Term optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term (optional)
@@ -366,6 +379,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> (and optional Term), then Go.`;
 
     } else if (formCode === "SGASTDQ" || formCode === "SHACRSE" || formCode === "SFASTCA") {
+      // ID + Term required; SFASTCA CRN optional
       idWrap.style.display = "";
       ex.innerHTML = `
         <label>Term
@@ -379,6 +393,7 @@
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong> and <strong>Term</strong>${formCode==="SFASTCA"?" (CRN optional)":""}, then Go.`;
 
     } else if (formCode === "SWASLST") {
+      // Term + Subject required; no ID
       idWrap.style.display = "none";
       ex.innerHTML = `
         <label>Term
@@ -390,11 +405,13 @@
       $("#kb-hint").innerHTML = `Enter <strong>Term</strong> and <strong>Subject</strong>, then Go.`;
 
     } else if (formCode === "GUASYST" || formCode === "SHADGMQ" || formCode === "SWATRAC") {
+      // ID only
       idWrap.style.display = "";
       ex.innerHTML = ``;
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go.`;
 
     } else {
+      // SWADDER / SPAIDEN default: ID only
       idWrap.style.display = "";
       ex.innerHTML = "";
       $("#kb-hint").innerHTML = `Enter <strong>ID</strong>, then Go. Example: <code>T00031879</code>`;
@@ -473,7 +490,7 @@
         return;
       }
 
-      // SAASUMI — Admissions Summary Inquiry (stub)
+      // SAASUMI — Admissions Summary (stub)
       if (currentForm === "SAASUMI") {
         showSAASUMI(person, term);
         recentAdd("SAASUMI", `Admissions Summary ${id}${term?` @ ${term}`:""}`);
@@ -537,6 +554,7 @@
 
     $("#kb-go").addEventListener("click", go);
 
+    // Press Enter on any KB input to Go (delegated)
     $("#view-keyblock").addEventListener("keydown", (ev)=>{
       const t = ev.target;
       if (ev.key === "Enter" && (t.matches("#kb-id") || t.matches("#kb-term") || t.matches("#kb-crn") || t.matches("#kb-subject"))) {
@@ -549,6 +567,7 @@
   }
 
   // ====== CORE FORMS (existing) =============================================
+
   function showForm(formCode, person){
     setHidden($("#view-keyblock"), true);
     setHidden($("#view-swingenq"), true);
@@ -627,6 +646,7 @@
       tr.addEventListener("click", ()=> showForm("SPAIDEN", person));
       tb.appendChild(tr);
     });
+    // (Re)bind start button in case view was recreated earlier
     $("#roster-start")?.addEventListener("click", startOver, {once:true});
   }
 
@@ -687,6 +707,7 @@
   }
 
   // ====== NEW STUB PAGES ====================================================
+
   function showGUASYST(p){
     const fp = p.footprint || {};
     const row = (label,val)=>`<tr><td>${label}</td><td>${val? "✔︎" : "—"}</td></tr>`;
@@ -729,7 +750,7 @@
         <table class="table">
           <thead><tr><th>Term</th><th>Programme</th><th>Status</th><th>Decision</th></tr></thead>
           <tbody>
-            ${[p.admissions, ...(p.admissionsHistory||[])].map(x=>`
+            ${[p.admissions, ...(p.admissionsHistory||[])] .map(x=>`
               <tr><td>${normalizeTerm(x.term)}</td><td>${x.program||""}</td><td>${x.status||""}</td><td>${x.decision||""}</td></tr>
             `).join("")}
           </tbody>
@@ -811,6 +832,7 @@
     const T = normalizeTerm(term);
     const SUBJ = (subject||"").toUpperCase();
 
+    // Build unique sections in this term+subject
     const map = new Map(); // crn -> {sec, count}
     dataset.forEach(p=>{
       (p.schedule||[]).forEach(s=>{
@@ -838,6 +860,7 @@
       `
     );
 
+    // Row click → roster
     $("#swalst-table tbody")?.addEventListener("click", (ev)=>{
       const tr = ev.target.closest("tr[data-crn]");
       if (!tr) return;
