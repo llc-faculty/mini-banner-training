@@ -19,14 +19,10 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900001", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900001", "type": "M", "primary": true }],
     "emergency": { "first": "Jamie", "last": "Green", "relationship": "Sibling", "phone": "+44 7700 900011" },
     "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
     "generalStudent": [
       { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" },
       { "term": "2024/25", "status": "Applicant", "level": "UG", "class": "", "feeRate": "Home" }
@@ -35,12 +31,8 @@
       { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" },
       { "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }
     ],
-    "courseHistory": [
-      { "term": "2024/25", "crn": "10021", "subject": "COMP", "course": "099", "title": "Programming Prep", "credits": 10, "grade": "A" }
-    ],
-    "registrationAudit": [
-      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "Added by student" }
-    ],
+    "courseHistory": [{ "term": "2024/25", "crn": "10021", "subject": "COMP", "course": "099", "title": "Programming Prep", "credits": 10, "grade": "A" }],
+    "registrationAudit": [{ "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "Added by student" }],
     "degree": [],
     "registration": {
       "term": "2025/26",
@@ -75,35 +67,19 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900002", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900002", "type": "M", "primary": true }],
     "emergency": { "first": "Morgan", "last": "Taylor", "relationship": "Parent", "phone": "+44 7700 900012" },
     "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" },
       { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" }
     ],
     "courseHistory": [],
-    "registrationAudit": [
-      { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "" }
-    ],
+    "registrationAudit": [{ "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "status": "Add", "addDate": "2025-09-18", "statusDate": "2025-09-18", "message": "" }],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": [
-        { "name": "Confirm Personal Details", "confirmedAt": "2025-09-01T11:12:00Z" }
-      ]
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [{ "name": "Confirm Personal Details", "confirmedAt": "2025-09-01T11:12:00Z" }] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -127,33 +103,19 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900003", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900003", "type": "M", "primary": true }],
     "emergency": { "first": "Aisha", "last": "Khan", "relationship": "Spouse", "phone": "+44 7700 900013" },
     "admissions": { "term": "2025/26", "program": "BSc Mathematics", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Mathematics", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Mathematics", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" },
       { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" }
     ],
-    "courseHistory": [
-      { "term": "2024/25", "crn": "33001", "subject": "HIST", "course": "101", "title": "World History", "credits": 20, "grade": "B" }
-    ],
+    "courseHistory": [{ "term": "2024/25", "crn": "33001", "subject": "HIST", "course": "101", "title": "World History", "credits": 20, "grade": "B" }],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -177,17 +139,11 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900004", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900004", "type": "M", "primary": true }],
     "emergency": { "first": "Ravi", "last": "Shah", "relationship": "Parent", "phone": "+44 7700 900014" },
     "admissions": { "term": "2025/26", "program": "BA English Literature", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BA English Literature", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BA English Literature", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "66012", "subject": "ENGL", "course": "101", "title": "Poetry & Prose", "days": "Tue", "time": "15:00-17:00", "room": "L2" },
       { "term": "2025/26", "crn": "33001", "subject": "HIST", "course": "101", "title": "World History", "days": "Mon", "time": "12:00-14:00", "room": "H3" }
@@ -195,13 +151,7 @@
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -225,17 +175,11 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900005", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900005", "type": "M", "primary": true }],
     "emergency": { "first": "Aoife", "last": "Neill", "relationship": "Sibling", "phone": "+44 7700 900015" },
     "admissions": { "term": "2025/26", "program": "BA History", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BA History", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BA History", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "33001", "subject": "HIST", "course": "101", "title": "World History", "days": "Mon", "time": "12:00-14:00", "room": "H3" },
       { "term": "2025/26", "crn": "55031", "subject": "ENGR", "course": "101", "title": "Statics", "days": "Mon/Wed", "time": "09:30-10:30", "room": "E201" }
@@ -243,13 +187,7 @@
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -273,17 +211,11 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900006", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900006", "type": "M", "primary": true }],
     "emergency": { "first": "Tunde", "last": "Adebayo", "relationship": "Parent", "phone": "+44 7700 900016" },
     "admissions": { "term": "2025/26", "program": "BSc Biology", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Biology", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Biology", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "44002", "subject": "BIOL", "course": "100", "title": "Cells & Molecules", "days": "Tue", "time": "11:00-13:00", "room": "B1" },
       { "term": "2025/26", "crn": "66012", "subject": "ENGL", "course": "101", "title": "Poetry & Prose", "days": "Tue", "time": "15:00-17:00", "room": "L2" }
@@ -291,13 +223,7 @@
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -321,17 +247,11 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900007", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900007", "type": "M", "primary": true }],
     "emergency": { "first": "Nick", "last": "Martin", "relationship": "Partner", "phone": "+44 7700 900017" },
     "admissions": { "term": "2025/26", "program": "BA English Literature", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BA English Literature", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BA English Literature", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "66012", "subject": "ENGL", "course": "101", "title": "Poetry & Prose", "days": "Tue", "time": "15:00-17:00", "room": "L2" },
       { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" }
@@ -339,13 +259,7 @@
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -369,34 +283,24 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900008", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900008", "type": "M", "primary": true }],
     "emergency": { "first": "Helen", "last": "Brooks", "relationship": "Parent", "phone": "+44 7700 900018" },
     "admissions": { "term": "2025/26", "program": "MEng Mechanical Engineering", "status": "Conditional", "decision": "Offer Made" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "MEng Mechanical Engineering", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Applicant", "level": "UG", "class": "", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "MEng Mechanical Engineering", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Applicant", "level": "UG", "class": "", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "55031", "subject": "ENGR", "course": "101", "title": "Statics", "days": "Mon/Wed", "time": "09:30-10:30", "room": "E201" },
       { "term": "2025/26", "crn": "22010", "subject": "COMP", "course": "101", "title": "Programming I", "days": "Tue/Thu", "time": "09:00-10:30", "room": "CS101" }
     ],
     "courseHistory": [],
-    "registrationAudit": [
-      { "term": "2025/26", "crn": "55031", "subject": "ENGR", "course": "101", "status": "Add", "addDate": "2025-09-17", "statusDate": "2025-09-17", "message": "" }
-    ],
+    "registrationAudit": [{ "term": "2025/26", "crn": "55031", "subject": "ENGR", "course": "101", "status": "Add", "addDate": "2025-09-17", "statusDate": "2025-09-17", "message": "" }],
     "degree": [],
     "registration": {
       "term": "2025/26",
       "status": "In Progress",
-      "holds": [ { "type": "Fees", "note": "Awaiting tuition payment" } ],
+      "holds": [{ "type": "Fees", "note": "Awaiting tuition payment" }],
       "fees": { "tuition": 9250, "overdue": 250 },
-      "steps": [
-        { "name": "Confirm Personal Details", "confirmedAt": null }
-      ]
+      "steps": [{ "name": "Confirm Personal Details", "confirmedAt": null }]
     },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
@@ -421,33 +325,19 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900009", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900009", "type": "M", "primary": true }],
     "emergency": { "first": "Hao", "last": "Chen", "relationship": "Parent", "phone": "+44 7700 900019" },
     "admissions": { "term": "2025/26", "program": "BSc Physics", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Physics", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Physics", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" },
       { "term": "2025/26", "crn": "10021", "subject": "LING", "course": "101", "title": "Intro to Linguistics", "days": "Mon/Wed", "time": "10:00-11:00", "room": "B20" }
     ],
-    "courseHistory": [
-      { "term": "2024/25", "crn": "77007", "subject": "MATH", "course": "100", "title": "Foundation Maths", "credits": 20, "grade": "A" }
-    ],
+    "courseHistory": [{ "term": "2024/25", "crn": "77007", "subject": "MATH", "course": "100", "title": "Foundation Maths", "credits": 20, "grade": "A" }],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
@@ -471,17 +361,11 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      { "number": "+44 7700 900010", "type": "M", "primary": true }
-    ],
+    "phones": [{ "number": "+44 7700 900010", "type": "M", "primary": true }],
     "emergency": { "first": "Sophie", "last": "Evans", "relationship": "Sibling", "phone": "+44 7700 900020" },
     "admissions": { "term": "2025/26", "program": "BSc Physics", "status": "Admitted", "decision": "Firm" },
-    "admissionsHistory": [
-      { "term": "2024/25", "program": "BSc Physics", "status": "Conditional", "decision": "Offer Made" }
-    ],
-    "generalStudent": [
-      { "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }
-    ],
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Physics", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
     "schedule": [
       { "term": "2025/26", "crn": "11101", "subject": "PHYS", "course": "101", "title": "Waves & Optics", "days": "Tue", "time": "10:00-12:00", "room": "P2" },
       { "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }
@@ -489,19 +373,10 @@
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": { "tuition": 9250, "overdue": 0 },
-      "steps": []
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
     "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
-  }
-]
-
-[
+  },
   {
     "id": "T00031889",
     "firstName": "Sam",
@@ -522,75 +397,17 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      {
-        "number": "+44 7700 901111",
-        "type": "M",
-        "primary": true
-      }
-    ],
-    "emergency": {
-      "first": "Avery",
-      "last": "Taylor",
-      "relationship": "Parent",
-      "phone": "+44 7700 901121"
-    },
-    "admissions": {
-      "term": "2025/26",
-      "program": "BSc Computer Science",
-      "status": "Admitted",
-      "decision": "Firm"
-    },
-    "admissionsHistory": [
-      {
-        "term": "2024/25",
-        "program": "BSc Computer Science",
-        "status": "Conditional",
-        "decision": "Offer Made"
-      }
-    ],
-    "generalStudent": [
-      {
-        "term": "2025/26",
-        "status": "Registered",
-        "level": "UG",
-        "class": "Y1",
-        "feeRate": "Home"
-      }
-    ],
-    "schedule": [
-      {
-        "term": "2025/26",
-        "crn": "77007",
-        "subject": "MATH",
-        "course": "101",
-        "title": "Calculus I",
-        "days": "Mon/Wed/Fri",
-        "time": "09:00-09:50",
-        "room": "M1"
-      }
-    ],
+    "phones": [{ "number": "+44 7700 901111", "type": "M", "primary": true }],
+    "emergency": { "first": "Avery", "last": "Taylor", "relationship": "Parent", "phone": "+44 7700 901121" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
+    "schedule": [{ "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }],
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": {
-        "tuition": 9250,
-        "overdue": 0
-      },
-      "steps": []
-    },
-    "footprint": {
-      "admissions": true,
-      "general": true,
-      "registration": true,
-      "housing": false,
-      "finAid": false,
-      "ar": true
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
   {
@@ -613,75 +430,17 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      {
-        "number": "+44 7700 901112",
-        "type": "M",
-        "primary": true
-      }
-    ],
-    "emergency": {
-      "first": "Jordan",
-      "last": "Taylor",
-      "relationship": "Sibling",
-      "phone": "+44 7700 901122"
-    },
-    "admissions": {
-      "term": "2025/26",
-      "program": "BSc Computer Science",
-      "status": "Admitted",
-      "decision": "Firm"
-    },
-    "admissionsHistory": [
-      {
-        "term": "2024/25",
-        "program": "BSc Computer Science",
-        "status": "Conditional",
-        "decision": "Offer Made"
-      }
-    ],
-    "generalStudent": [
-      {
-        "term": "2025/26",
-        "status": "Registered",
-        "level": "UG",
-        "class": "Y1",
-        "feeRate": "Home"
-      }
-    ],
-    "schedule": [
-      {
-        "term": "2025/26",
-        "crn": "77007",
-        "subject": "MATH",
-        "course": "101",
-        "title": "Calculus I",
-        "days": "Mon/Wed/Fri",
-        "time": "09:00-09:50",
-        "room": "M1"
-      }
-    ],
+    "phones": [{ "number": "+44 7700 901112", "type": "M", "primary": true }],
+    "emergency": { "first": "Jordan", "last": "Taylor", "relationship": "Sibling", "phone": "+44 7700 901122" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
+    "schedule": [{ "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }],
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": {
-        "tuition": 9250,
-        "overdue": 0
-      },
-      "steps": []
-    },
-    "footprint": {
-      "admissions": true,
-      "general": true,
-      "registration": true,
-      "housing": false,
-      "finAid": false,
-      "ar": true
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
   {
@@ -704,75 +463,17 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      {
-        "number": "+44 7700 901113",
-        "type": "M",
-        "primary": true
-      }
-    ],
-    "emergency": {
-      "first": "Riley",
-      "last": "Green",
-      "relationship": "Parent",
-      "phone": "+44 7700 901123"
-    },
-    "admissions": {
-      "term": "2025/26",
-      "program": "BSc Computer Science",
-      "status": "Admitted",
-      "decision": "Firm"
-    },
-    "admissionsHistory": [
-      {
-        "term": "2024/25",
-        "program": "BSc Computer Science",
-        "status": "Conditional",
-        "decision": "Offer Made"
-      }
-    ],
-    "generalStudent": [
-      {
-        "term": "2025/26",
-        "status": "Registered",
-        "level": "UG",
-        "class": "Y1",
-        "feeRate": "Home"
-      }
-    ],
-    "schedule": [
-      {
-        "term": "2025/26",
-        "crn": "77007",
-        "subject": "MATH",
-        "course": "101",
-        "title": "Calculus I",
-        "days": "Mon/Wed/Fri",
-        "time": "09:00-09:50",
-        "room": "M1"
-      }
-    ],
+    "phones": [{ "number": "+44 7700 901113", "type": "M", "primary": true }],
+    "emergency": { "first": "Riley", "last": "Green", "relationship": "Parent", "phone": "+44 7700 901123" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
+    "schedule": [{ "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }],
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": {
-        "tuition": 9250,
-        "overdue": 0
-      },
-      "steps": []
-    },
-    "footprint": {
-      "admissions": true,
-      "general": true,
-      "registration": true,
-      "housing": false,
-      "finAid": false,
-      "ar": true
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   },
   {
@@ -795,75 +496,18 @@
       "to": "",
       "source": "TRNG"
     },
-    "phones": [
-      {
-        "number": "+44 7700 901114",
-        "type": "M",
-        "primary": true
-      }
-    ],
-    "emergency": {
-      "first": "Casey",
-      "last": "Green",
-      "relationship": "Guardian",
-      "phone": "+44 7700 901124"
-    },
-    "admissions": {
-      "term": "2025/26",
-      "program": "BSc Computer Science",
-      "status": "Admitted",
-      "decision": "Firm"
-    },
-    "admissionsHistory": [
-      {
-        "term": "2024/25",
-        "program": "BSc Computer Science",
-        "status": "Conditional",
-        "decision": "Offer Made"
-      }
-    ],
-    "generalStudent": [
-      {
-        "term": "2025/26",
-        "status": "Registered",
-        "level": "UG",
-        "class": "Y1",
-        "feeRate": "Home"
-      }
-    ],
-    "schedule": [
-      {
-        "term": "2025/26",
-        "crn": "77007",
-        "subject": "MATH",
-        "course": "101",
-        "title": "Calculus I",
-        "days": "Mon/Wed/Fri",
-        "time": "09:00-09:50",
-        "room": "M1"
-      }
-    ],
+    "phones": [{ "number": "+44 7700 901114", "type": "M", "primary": true }],
+    "emergency": { "first": "Casey", "last": "Green", "relationship": "Guardian", "phone": "+44 7700 901124" },
+    "admissions": { "term": "2025/26", "program": "BSc Computer Science", "status": "Admitted", "decision": "Firm" },
+    "admissionsHistory": [{ "term": "2024/25", "program": "BSc Computer Science", "status": "Conditional", "decision": "Offer Made" }],
+    "generalStudent": [{ "term": "2025/26", "status": "Registered", "level": "UG", "class": "Y1", "feeRate": "Home" }],
+    "schedule": [{ "term": "2025/26", "crn": "77007", "subject": "MATH", "course": "101", "title": "Calculus I", "days": "Mon/Wed/Fri", "time": "09:00-09:50", "room": "M1" }],
     "courseHistory": [],
     "registrationAudit": [],
     "degree": [],
-    "registration": {
-      "term": "2025/26",
-      "status": "In Progress",
-      "holds": [],
-      "fees": {
-        "tuition": 9250,
-        "overdue": 0
-      },
-      "steps": []
-    },
-    "footprint": {
-      "admissions": true,
-      "general": true,
-      "registration": true,
-      "housing": false,
-      "finAid": false,
-      "ar": true
-    },
+    "registration": { "term": "2025/26", "status": "In Progress", "holds": [], "fees": { "tuition": 9250, "overdue": 0 }, "steps": [] },
+    "footprint": { "admissions": true, "general": true, "registration": true, "housing": false, "finAid": false, "ar": true },
     "photoUrl": ""
   }
 ]
+
