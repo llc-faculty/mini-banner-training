@@ -154,9 +154,12 @@ function getStudentsURL() {
 
   async function loadData(){
     try {
-      const res = await fetch(getStudentsURL(), { cache: 'no-store' });
+      const url = "data/students.json"; // or getStudentsURL() if you added it
+      console.log("[students] fetching:", url);
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       dataset = await res.json();
+      console.log("[students] loaded", dataset.length, "from", res.url);
     } catch(e){
       console.warn("Using embedded dataset due to fetch error:", e);
       dataset = embedded;
