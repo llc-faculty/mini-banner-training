@@ -4,6 +4,19 @@
   // ====== CONFIG / CONSTANTS =================================================
   const DEFAULT_TERM = "2025/26";
 
+  // Where to load students.json from (HTML controls it via <meta> tags)
+function getStudentsURL() {
+  // Preferred: <meta name="students-url" content="https://.../students.json?v=2025-08-24-2">
+  let url = document.querySelector('meta[name="students-url"]')?.content?.trim()
+         || 'data/students.json'; // fallback if you keep a local copy
+
+  // Optional manual bump if you prefer separate version meta
+  const v = document.querySelector('meta[name="students-url-version"]')?.content?.trim();
+  if (v && !/[?&]v=/.test(url)) url += (url.includes('?') ? '&' : '?') + 'v=' + encodeURIComponent(v);
+
+  return url;
+}
+
   // ====== HELPERS ============================================================
   const $  = sel => document.querySelector(sel);
   const $$ = sel => Array.from(document.querySelectorAll(sel));
@@ -141,8 +154,8 @@
 
   async function loadData(){
     try {
-      const res = await fetch("data/students.json", {cache:"no-store"});
-      if(!res.ok) throw new Error("HTTP "+res.status);
+      const res = await fetch(getStudentsURL(), { cache: 'no-store' });
+      if (!res.ok) throw new Error("HTTP " + res.status);
       dataset = await res.json();
     } catch(e){
       console.warn("Using embedded dataset due to fetch error:", e);
