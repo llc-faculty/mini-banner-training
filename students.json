@@ -500,3 +500,370 @@
     "photoUrl": ""
   }
 ]
+
+[
+  {
+    "id": "T00031889",
+    "firstName": "Sam",
+    "middle": "P",
+    "lastName": "Taylor",
+    "dob": "2002-03-11",
+    "address": {
+      "type": "PH",
+      "line1": "12 St James Close",
+      "line2": "",
+      "line3": "",
+      "city": "NORTHVALE",
+      "county": "Greater Manchester",
+      "nation": "GB",
+      "stateProv": "",
+      "postal": "M1 5CD",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
+    },
+    "phones": [
+      {
+        "number": "+44 7700 901111",
+        "type": "M",
+        "primary": true
+      }
+    ],
+    "emergency": {
+      "first": "Avery",
+      "last": "Taylor",
+      "relationship": "Parent",
+      "phone": "+44 7700 901121"
+    },
+    "admissions": {
+      "term": "2025/26",
+      "program": "BSc Computer Science",
+      "status": "Admitted",
+      "decision": "Firm"
+    },
+    "admissionsHistory": [
+      {
+        "term": "2024/25",
+        "program": "BSc Computer Science",
+        "status": "Conditional",
+        "decision": "Offer Made"
+      }
+    ],
+    "generalStudent": [
+      {
+        "term": "2025/26",
+        "status": "Registered",
+        "level": "UG",
+        "class": "Y1",
+        "feeRate": "Home"
+      }
+    ],
+    "schedule": [
+      {
+        "term": "2025/26",
+        "crn": "77007",
+        "subject": "MATH",
+        "course": "101",
+        "title": "Calculus I",
+        "days": "Mon/Wed/Fri",
+        "time": "09:00-09:50",
+        "room": "M1"
+      }
+    ],
+    "courseHistory": [],
+    "registrationAudit": [],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": {
+        "tuition": 9250,
+        "overdue": 0
+      },
+      "steps": []
+    },
+    "footprint": {
+      "admissions": true,
+      "general": true,
+      "registration": true,
+      "housing": false,
+      "finAid": false,
+      "ar": true
+    },
+    "photoUrl": ""
+  },
+  {
+    "id": "T00031890",
+    "firstName": "Sam",
+    "middle": "L",
+    "lastName": "Taylor",
+    "dob": "2003-10-02",
+    "address": {
+      "type": "PH",
+      "line1": "Flat 8, 19 Mill Street",
+      "line2": "",
+      "line3": "",
+      "city": "NORTHVALE",
+      "county": "Greater Manchester",
+      "nation": "GB",
+      "stateProv": "",
+      "postal": "M2 6DE",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
+    },
+    "phones": [
+      {
+        "number": "+44 7700 901112",
+        "type": "M",
+        "primary": true
+      }
+    ],
+    "emergency": {
+      "first": "Jordan",
+      "last": "Taylor",
+      "relationship": "Sibling",
+      "phone": "+44 7700 901122"
+    },
+    "admissions": {
+      "term": "2025/26",
+      "program": "BSc Computer Science",
+      "status": "Admitted",
+      "decision": "Firm"
+    },
+    "admissionsHistory": [
+      {
+        "term": "2024/25",
+        "program": "BSc Computer Science",
+        "status": "Conditional",
+        "decision": "Offer Made"
+      }
+    ],
+    "generalStudent": [
+      {
+        "term": "2025/26",
+        "status": "Registered",
+        "level": "UG",
+        "class": "Y1",
+        "feeRate": "Home"
+      }
+    ],
+    "schedule": [
+      {
+        "term": "2025/26",
+        "crn": "77007",
+        "subject": "MATH",
+        "course": "101",
+        "title": "Calculus I",
+        "days": "Mon/Wed/Fri",
+        "time": "09:00-09:50",
+        "room": "M1"
+      }
+    ],
+    "courseHistory": [],
+    "registrationAudit": [],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": {
+        "tuition": 9250,
+        "overdue": 0
+      },
+      "steps": []
+    },
+    "footprint": {
+      "admissions": true,
+      "general": true,
+      "registration": true,
+      "housing": false,
+      "finAid": false,
+      "ar": true
+    },
+    "photoUrl": ""
+  },
+  {
+    "id": "T00031891",
+    "firstName": "Alex",
+    "middle": "T",
+    "lastName": "Green",
+    "dob": "2003-09-14",
+    "address": {
+      "type": "PH",
+      "line1": "21 Oakfield Road",
+      "line2": "",
+      "line3": "",
+      "city": "BRADCHESTER",
+      "county": "West Yorkshire",
+      "nation": "GB",
+      "stateProv": "",
+      "postal": "BD5 3XZ",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
+    },
+    "phones": [
+      {
+        "number": "+44 7700 901113",
+        "type": "M",
+        "primary": true
+      }
+    ],
+    "emergency": {
+      "first": "Riley",
+      "last": "Green",
+      "relationship": "Parent",
+      "phone": "+44 7700 901123"
+    },
+    "admissions": {
+      "term": "2025/26",
+      "program": "BSc Computer Science",
+      "status": "Admitted",
+      "decision": "Firm"
+    },
+    "admissionsHistory": [
+      {
+        "term": "2024/25",
+        "program": "BSc Computer Science",
+        "status": "Conditional",
+        "decision": "Offer Made"
+      }
+    ],
+    "generalStudent": [
+      {
+        "term": "2025/26",
+        "status": "Registered",
+        "level": "UG",
+        "class": "Y1",
+        "feeRate": "Home"
+      }
+    ],
+    "schedule": [
+      {
+        "term": "2025/26",
+        "crn": "77007",
+        "subject": "MATH",
+        "course": "101",
+        "title": "Calculus I",
+        "days": "Mon/Wed/Fri",
+        "time": "09:00-09:50",
+        "room": "M1"
+      }
+    ],
+    "courseHistory": [],
+    "registrationAudit": [],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": {
+        "tuition": 9250,
+        "overdue": 0
+      },
+      "steps": []
+    },
+    "footprint": {
+      "admissions": true,
+      "general": true,
+      "registration": true,
+      "housing": false,
+      "finAid": false,
+      "ar": true
+    },
+    "photoUrl": ""
+  },
+  {
+    "id": "T00031892",
+    "firstName": "Alex",
+    "middle": "S",
+    "lastName": "Green",
+    "dob": "2005-01-22",
+    "address": {
+      "type": "PH",
+      "line1": "48 Park Grove",
+      "line2": "",
+      "line3": "",
+      "city": "BRADCHESTER",
+      "county": "West Yorkshire",
+      "nation": "GB",
+      "stateProv": "",
+      "postal": "BD6 1TT",
+      "from": "2025-08-01",
+      "to": "",
+      "source": "TRNG"
+    },
+    "phones": [
+      {
+        "number": "+44 7700 901114",
+        "type": "M",
+        "primary": true
+      }
+    ],
+    "emergency": {
+      "first": "Casey",
+      "last": "Green",
+      "relationship": "Guardian",
+      "phone": "+44 7700 901124"
+    },
+    "admissions": {
+      "term": "2025/26",
+      "program": "BSc Computer Science",
+      "status": "Admitted",
+      "decision": "Firm"
+    },
+    "admissionsHistory": [
+      {
+        "term": "2024/25",
+        "program": "BSc Computer Science",
+        "status": "Conditional",
+        "decision": "Offer Made"
+      }
+    ],
+    "generalStudent": [
+      {
+        "term": "2025/26",
+        "status": "Registered",
+        "level": "UG",
+        "class": "Y1",
+        "feeRate": "Home"
+      }
+    ],
+    "schedule": [
+      {
+        "term": "2025/26",
+        "crn": "77007",
+        "subject": "MATH",
+        "course": "101",
+        "title": "Calculus I",
+        "days": "Mon/Wed/Fri",
+        "time": "09:00-09:50",
+        "room": "M1"
+      }
+    ],
+    "courseHistory": [],
+    "registrationAudit": [],
+    "degree": [],
+    "registration": {
+      "term": "2025/26",
+      "status": "In Progress",
+      "holds": [],
+      "fees": {
+        "tuition": 9250,
+        "overdue": 0
+      },
+      "steps": []
+    },
+    "footprint": {
+      "admissions": true,
+      "general": true,
+      "registration": true,
+      "housing": false,
+      "finAid": false,
+      "ar": true
+    },
+    "photoUrl": ""
+  }
+]
